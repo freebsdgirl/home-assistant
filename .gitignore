@@ -25,3 +25,4 @@ deps/
 .storage/
 .cloud/
 tts/
+lovelace/views/test.yaml
