@@ -35,3 +35,4 @@ views:
   - !include /config/lovelace/views/automations.yaml
   - !include /config/lovelace/views/all_power_devices.yaml
   - !include /config/lovelace/views/monster_cards.yaml
+  - !include /config/lovelace/views/test.yaml
