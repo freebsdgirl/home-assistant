@@ -3,7 +3,5 @@ path: default_view
 badges: []
 cards:
   - !include /config/lovelace/cards/weather.yaml
-  - !include /config/lovelace/cards/all_temperatures_slider.yaml
-  - !include /config/lovelace/cards/all_humidities_slider.yaml
   - !include /config/lovelace/cards/calendar.yaml
   - !include /config/lovelace/cards/lights_on.yaml
