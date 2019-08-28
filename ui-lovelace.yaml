@@ -26,6 +26,8 @@ resources:
     url: /local/cards/mini-media-player-bundle.js
   - type: js
     url: /local/cards/swipe-card.js
+  - type: js
+    url: /local/cards/battery-entity.js
 views: 
   - !include /config/lovelace/views/home.yaml
   - !include /config/lovelace/views/bathroom.yaml
