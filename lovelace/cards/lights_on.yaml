@@ -1,0 +1,14 @@
+type: 'custom:monster-card'
+show_empty: false
+card:
+  type: entities
+  title: Lights On
+  show_state: false
+  show_header_toggle: false
+filter:
+  exclude:
+    - state: 'off'
+    - state: unavailable
+    - entity_id: '*_[0-9]'
+  include:
+    - domain: light
