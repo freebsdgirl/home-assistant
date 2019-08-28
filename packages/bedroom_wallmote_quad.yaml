@@ -105,12 +105,12 @@ homeassistant:
     switch.bedroom_wallmote_quad_1:
       friendly_name: Bedroom Wallmote Quad Switch 1
       hidden: true
-    switch.bedroom_wallmote_quad_1:
+    switch.bedroom_wallmote_quad_2:
       friendly_name: Bedroom Wallmote Quad Switch 2
       hidden: true
-    switch.bedroom_wallmote_quad_1:
+    switch.bedroom_wallmote_quad_3:
       friendly_name: Bedroom Wallmote Quad Switch 3
       hidden: true
-    switch.bedroom_wallmote_quad_1:
+    switch.bedroom_wallmote_quad_4:
       friendly_name: Bedroom Wallmote Quad Switch 4
       hidden: true
