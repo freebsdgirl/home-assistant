@@ -22,6 +22,8 @@ resources:
     url: /local/cards/monster-card.js
   - type: js
     url: /local/cards/button-card.js
+  - type: js
+    url: /local/cards/mini-media-player-bundle.js
 views: 
   - !include /config/lovelace/views/home.yaml
   - !include /config/lovelace/views/bathroom.yaml
