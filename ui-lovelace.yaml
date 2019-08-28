@@ -20,6 +20,8 @@ resources:
     url: /local/cards/mini-graph-card-bundle.js
   - type: js
     url: /local/cards/monster-card.js
+  - type: js
+    url: /local/cards/button-card.js
 views: 
   - !include /config/lovelace/views/home.yaml
   - !include /config/lovelace/views/bathroom.yaml
