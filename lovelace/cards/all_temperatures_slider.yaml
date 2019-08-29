@@ -1,5 +1,5 @@
 type: custom:swipe-card
-card_width: '80%'
+card_width: '60%'
 start_card: 2
 parameters:
   effect: 'coverflow'

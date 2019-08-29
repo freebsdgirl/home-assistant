@@ -1,6 +1,6 @@
 type: custom:swipe-card
-card_width: '60%'
-start_card: 2
+card_width: '75%'
+start_card: 1
 parameters:
   effect: 'coverflow'
   grabCursor: true
@@ -15,8 +15,6 @@ parameters:
   pagination:
     type: 'bullets'
 cards:
+  - !include /config/lovelace/cards/sensors/bathroom_temp.yaml
   - !include /config/lovelace/cards/sensors/bathroom_rh.yaml
-  - !include /config/lovelace/cards/sensors/dining_room_rh.yaml
-  - !include /config/lovelace/cards/sensors/hallway_rh.yaml
-  - !include /config/lovelace/cards/sensors/kitchen_rh.yaml
-  - !include /config/lovelace/cards/sensors/living_room_rh.yaml
+  - !include /config/lovelace/cards/sensors/bathroom_lx.yaml

@@ -1,0 +1,22 @@
+type: 'custom:mini-graph-card'
+entities:
+  - entity: sensor.hallway_luminance
+    state_adaptive_color: true
+group: true
+font_size: 120
+font_size_header: 12
+height: 75
+hours_to_show: 12
+points_per_hour: 2
+align_state: center
+animate: true
+color_thresholds_transition: smooth
+show:
+  extrema: true
+  fill: fade
+  graph: line
+  icon_adaptive_color: false
+  labels: true
+  labels_secondary: true
+  name_adaptive_color: false
+color_thresholds: !include /config/lovelace/cards/sensors/lx_colours.yaml
