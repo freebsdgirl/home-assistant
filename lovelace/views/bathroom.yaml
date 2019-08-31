@@ -2,21 +2,6 @@ title: Bathroom
 badges: []
 cards:
   - !include /config/lovelace/cards/bathroom_sensor_slider.yaml
-  - entities:
-      - entity: switch.bathroom_double_outlet
-      - entity: switch.bathroom_toothbrush
-      - entity: switch.bathroom_waterpik
-      - entity: switch.bathroom_echo_dot
-    show_header_toggle: true
-    title: Devices
-    type: entities
   - !include /config/lovelace/cards/lights/bathroom.yaml
-  - entity: switch.bathroom_fan
-    hold_action:
-      action: more-info
-    show_icon: true
-    show_name: true
-    tap_action:
-      action: toggle
-    type: entity-button
+  - !include /config/lovelace/cards/devices/bathroom.yaml
 
