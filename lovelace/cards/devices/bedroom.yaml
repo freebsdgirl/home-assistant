@@ -1,0 +1,37 @@
+type: vertical-stack
+cards:
+  - content: '## Devices'
+    type: markdown
+  - type: horizontal-stack
+    cards:
+      - type: entity-button
+        entity: switch.bedroom_fan
+        show_name: false
+        icon_height: '125px'
+      - type: entity-button
+        entity: switch.bedroom_air_conditioner
+        show_name: false
+        icon_height: '125px'
+  - type: horizontal-stack
+    cards:
+    - type: entity-button
+      entity: switch.bedroom_wax_melter
+      show_name: false
+      icon_height: '125px'
+    - type: entity-button
+      entity: switch.bedroom_double_outlet
+      name: Double Outlet
+      show_name: false
+      icon_height: '125px'
+    - type: vertical-stack
+      cards:
+        - type: entity-button
+          entity: switch.bedroom_tv
+          name: TV
+          icon_height: '52px'
+          show_name: false
+        - type: entity-button
+          entity: switch.bedroom_siren_6
+          name: Siren
+          icon_height: '52px'
+          show_name: false

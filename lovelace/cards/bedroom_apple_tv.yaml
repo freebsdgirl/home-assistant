@@ -1,0 +1,13 @@
+type: custom:mini-media-player
+entity: media_player.bedroom_apple_tv
+name: Apple TV
+hide:
+  power_state: false
+  icon: true
+  volume: true
+artwork: cover
+info: scroll
+idle_view:
+  when_idle: true
+  when_paused: false
+  when_standby: true

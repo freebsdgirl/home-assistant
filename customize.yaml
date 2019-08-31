@@ -25,6 +25,7 @@ sensor.bathroom_door_temperature:
 switch.bathroom_double_outlet:
   device_class: outlet
   friendly_name: Bathroom Double Outlet
+  icon: mdi:power-plug
 sensor.bathroom_double_outlet_power:
   device_class: power
   friendly_name: Bathroom Double Outlet Power
@@ -152,6 +153,31 @@ sensor.bedroom_closet_door_temperature:
 ### smartthings zigbee outlet
 switch.bedroom_air_conditioner:
   friendly_name: Bedroom Air Conditioner Outlet
+  icon: mdi:air-conditioner
+
+### tuya power strip
+switch.bedroom_apple_tv_outlet:
+  friendly_name: Bedroom Apple TV Outlet
+  icon: mdi:apple
+switch.bedroom_wax_melter:
+  friendly_name: Bedroom Wax Melt Plug
+  icon: mdi:candle
+switch.bedroom_tv_leds:
+  friendly_name: Bedroom TV LEDs
+  icon: mdi:led-outline
+switch.bedroom_tuya_usb:
+  friendly_name: Bedroom Tuya USB
+  icon: mdi:usb
+switch.bedroom_tuya_unused_01:
+  friendly_name: Bedroom Tuya (Unused)
+  icon: mdi:power-socket-us
+
+### tp-link kasa
+# todo: template things like fans so they show as icon: mdi:fan-off when 
+# not in use
+switch.bedroom_fan:
+  friendly_name: Bedroom Fan
+  icon: mdi:fan
 
 ### bedroom zooz double outlet
 switch.bedroom_double_outlet:
@@ -175,10 +201,6 @@ switch.bedroom_siren_6:
 sensor.bedroom_siren_6_power:
   device_class: power
   friendly_name: Bedroom Siren 6 Power
-switch.bedroom_double_outlet_usb:
-  device_class: outlet
-  friendly_name: Bedroom IR Controller
-  icon: mdi:remote
 # hidden entities
 zwave.bedroom_double_outlet:
   hidden: true
@@ -214,6 +236,11 @@ sensor.bedroom_tv_energy:
   hidden: true
 sensor.bedroom_tv_voltage:
   friendly_name: Bedroom TV Voltage
+  hidden: true
+switch.bedroom_double_outlet_usb:
+  device_class: outlet
+  friendly_name: Bedroom IR Controller
+  icon: mdi:remote
   hidden: true
 
 
@@ -350,6 +377,22 @@ switch.kitchen_light:
   friendly_name: Kitchen Light Switch
   icon: mdi:light-switch
 
+### tuya
+switch.kitchen_keurig_outlet:
+  friendly_name: Keurig
+  icon: mdi:coffee-maker
+switch.kitchen_lightstrip_outlet:
+  friendly_name: Kitchen Lightstrip Outlet
+  icon: mdi:led-strip
+  hidden: true
+switch.kitchen_tuya_unused01:
+  friendly_name: Kitchen Tuya (Unused)
+  device_class: outlet
+
+### wemo
+switch.coffeemaker:
+  friendly_name: WeMo CoffeeMaker
+
 
 #####################################################
 #################### LIVING ROOM ####################
@@ -358,13 +401,13 @@ switch.kitchen_light:
 
 ############### outlets ###############
 
-### samsung smartthings
-switch.living_room_air_conditioner:
-  friendly_name: Living Room Air Conditioner Outlet
-  device_class: outlets
-sensor.living_room_air_conditioner_power:
-  friendly_name: Living Room Air Conditioner Power
-  device_class: power
+### tuya
+switch.workbench_helping_hand:
+  friendly_name: Workbench Helping Hand
+  device_class: outlet
+switch.living_room_floor_lamp:
+  friendly_name: Living Room Floor Lamp
+  hidden: true
 
 ### zooz power strip
 switch.desk_power_strip:
@@ -511,34 +554,28 @@ light.living_room_floor_lamp:
   icon: mdi:floor-lamp
 
 
-####
-####
-####
-####
-####
-####
-####
-####
-####
-####
-#### until the tuya problems are solved, commenting out all of this.
-#switch.ps01_outlet1:
-#  device_class: outlet
-#  friendly_name: Bedroom Apple TV Plug
-#  icon: mdi:apple
-#switch.ps01_outlet2:
-#  device_class: switch
-#  friendly_name: Bedroom TV LEDs
-#  icon: mdi:led-outline
-#switch.ps01_outlet3:
-#  device_class: outlet
-#  friendly_name: Bedroom Wax Melt Plug
-#  icon: mdi:candle
-#switch.ps01_usb:
-#  device_class: outlet
-#  friendly_name: Hallway Camera Plug
-#  icon: mdi:camcorder
-#switch.ps01_outlet4:
-#  device_class: outlet
-#  friendly_name: Bedroom Plug 4 (Unused)
-#  icon: mdi:power-socket-us
+######################################
+########### UNUSED DEVICES ###########
+######################################
+
+
+# tuya double plug
+switch.tuya_double_01:
+  friendly_name: Tuya Double Outlet (Unused)
+  icon: mdi:power-socket-us
+  hidden: true
+switch.tuya_double_02:
+  friendly_name: Tuya Double Outlet (Unused)
+  icon: mdi:power-socket-us
+  hidden: true
+
+### smartthings 1st gen outlet
+# the original plan was to use this for the living room ac, but it draws too
+# much power. going to have to get a zooz or aeotec outlet to handle it.
+switch.smartthings_01:
+  friendly_name: Smartthings Outlet (Unused)
+  icon: mdi:power-socket-us
+  hidden: true
+sensor.smartthings_01_power:
+  friendly_name: Smartthings Outlet Power (Unused)
+  device_class: power

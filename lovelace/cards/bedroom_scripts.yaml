@@ -1,0 +1,9 @@
+type: vertical-stack
+cards:
+  - type: markdown
+    content: '## Status'
+  - type: entities
+    entities:
+      - entity: automation.bedtime
+      - entity: scene.bedtime
+      - entity: input_boolean.in_bed

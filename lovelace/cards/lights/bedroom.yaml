@@ -1,0 +1,30 @@
+type: vertical-stack
+cards:
+  - type: markdown
+    content: '## Lights'
+  - type: horizontal-stack
+    cards:
+    - type: entity-button
+      entity: light.bedroom_ceiling
+      show_name: false
+    - type: entity-button
+      entity: light.bedroom_closet_ceiling
+      icon: mdi:hanger
+      show_name: false
+  - type: horizontal-stack
+    cards:
+    - type: entity-button
+      entity: light.bedroom_table_lamp
+      show_name: false
+    - type: entity-button
+      entity: light.bed_lightstrip
+      show_name: false
+  - type: horizontal-stack
+    cards:
+    - type: entity-button
+      entity: switch.bedroom_tv_leds
+      icon: mdi:television-classic
+      show_name: false
+    - type: entity-button
+      entity: light.bedroom_mirror
+      show_name: false

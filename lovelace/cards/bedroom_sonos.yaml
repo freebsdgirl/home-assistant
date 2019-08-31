@@ -1,0 +1,14 @@
+type: custom:mini-media-player
+entity: media_player.bedroom_sonos
+name: Sonos
+hide:
+  shuffle: false
+  icon: true
+  power: true
+artwork: cover
+info: scroll
+volume_stateless: true
+idle_view:
+  when_idle: true
+  when_paused: false
+  when_standby: true

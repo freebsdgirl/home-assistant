@@ -1,0 +1,6 @@
+type: vertical-stack
+cards:
+  - type: markdown
+    content: '## Media Players'
+  - !include /config/lovelace/cards/bedroom_apple_tv.yaml
+  - !include /config/lovelace/cards/bedroom_sonos.yaml
