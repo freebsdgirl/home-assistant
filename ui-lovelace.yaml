@@ -32,7 +32,6 @@ views:
   - !include /config/lovelace/views/home.yaml
   - !include /config/lovelace/views/bathroom.yaml
   - !include /config/lovelace/views/bedroom.yaml
-  - !include /config/lovelace/views/hallway.yaml
   - !include /config/lovelace/views/living_room.yaml
   - !include /config/lovelace/views/kitchen.yaml
   - !include /config/lovelace/views/sensor_data.yaml

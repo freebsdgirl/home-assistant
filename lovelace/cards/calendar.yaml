@@ -1,17 +1,21 @@
-type: 'custom:calendar-card'
-timeFormat: 'HH:mma'
-dateBottomFormat: ddd
-dateTopFormat: DD
-entities:
-  - entity: calendar.randi_harper
-  - entity: calendar.holidays_in_united_states
-hideHeader: true
-hideTime: false
-numberOfDays: '5'
-progressBar: true
-showEventOrigin: false
-showLocation: false
-showLocationIcon: true
-showMultiDay: true
-startFromToday: false
+type: vertical-stack
+cards:
+  - type: markdown
+    content: '## Active Lights'
+  - type: 'custom:calendar-card'
+    timeFormat: 'HH:mma'
+    dateBottomFormat: ddd
+    dateTopFormat: DD
+    entities:
+      - entity: calendar.randi_harper
+      - entity: calendar.holidays_in_united_states
+    hideHeader: true
+    hideTime: false
+    numberOfDays: '5'
+    progressBar: true
+    showEventOrigin: false
+    showLocation: false
+    showLocationIcon: true
+    showMultiDay: true
+    startFromToday: false
     

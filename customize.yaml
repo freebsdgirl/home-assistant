@@ -314,8 +314,10 @@ light.dining_room_ceiling_fan_4:      # bulb
 ############### locks ###############
 
 ### august front door lock 
+# todo: add battery device from template zwave attributes
+# update recorder to keep track of access_control sensor
 lock.front_door_lock:
-  friendly_name: Front Door Lock\
+  friendly_name: Front Door Lock
 # hidden
 zwave.front_door_lock:
   friendly_name: Front Door Lock
