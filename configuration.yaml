@@ -26,6 +26,7 @@ light: !include_dir_merge_list light
 group: !include_dir_named group
 scene: !include_dir_merge_list scene
 input_boolean: !include input_boolean.yaml
+input_number: !include input_number.yaml
 
 discovery:
 
@@ -58,6 +59,8 @@ ifttt:
 # rpi hard. moved to a mysql db on a different rpi.
 # changing recorder to send to usb disk instead
 recorder: !include recorder.yaml
+
+# mqtt: !include mqtt.yaml
 
 # edit lovelace in yaml mode
 lovelace:

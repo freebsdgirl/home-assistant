@@ -1,8 +1,12 @@
-############################################## 
+##############################################
 ########## bathroom motion lighting ##########
 ##############################################
 
-# turn bathroom lights at 100% on if there is motion during the day
+# turn bathroom lights at 
+# - 100% during the day
+# - 50% at night
+# - a single bulb for 1% while sleeping
+# only do this when lights are off so it doesn't overwrite manual settings.
 - alias: bathroom lights
   trigger:
     platform: state
@@ -14,71 +18,49 @@
       entity_id: input_boolean.motion_lights
       state: 'on'
     - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
-    - condition: state
-      entity_id: input_boolean.sleeping
+      entity_id: light.bathroom
       state: 'off'
   action:
     service: light.turn_on
-    entity_id: light.bathroom
-    data:
-      brightness_pct: 100
+    data_template:
+      brightness_pct: >-
+        {% if is_state("input_boolean.sleeping", "on") %}
+          1
+        {% elif is_state("sun.sun", "below_horizon") %}
+          50
+        {% elif is_state("sun.sun", "above_horizon") %}
+          100
+        {% else %}
+          25
+        {% endif %}
+      entity_id: 
+        - >- 
+          {% if is_state("input_boolean.sleeping", "on") %}
+            light.bathroom_mirror_1
+          {% else %}
+            light.bathroom
+          {% endif %}
 
-# turn bathroom lights at 50% on if there is motion at night
-- alias: bathroom lights (night)
-  trigger:
-    platform: state
-    entity_id: binary_sensor.bathroom_motion
-    from: 'off'
-    to: 'on'
-  condition:
-    - condition: state
-      entity_id: input_boolean.motion_lights
-      state: 'on'
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.sleeping
-      state: 'off'
-  action:
-    service: light.turn_on
-    entity_id: light.bathroom
-    data:
-      brightness_pct: 50
-
-# turn on one bathroom light at 1% on if there is motion during sleep hours
-- alias: bathroom lights (sleep)
-  trigger:
-    platform: state
-    entity_id: binary_sensor.bathroom_motion
-    from: 'off'
-    to: 'on'
-  condition:
-    - condition: state
-      entity_id: input_boolean.motion_lights
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.sleeping
-      state: 'on'
-  action:
-    service: light.turn_on
-    entity_id: light.bathroom_mirror_1
-    data:
-      brightness_pct: 1
-
-# turn off bathroom lights after 5 minutes when no motion detected and the door is open
+# turn off bathroom lights when no motion detected and the door is open
+# - 1 minute during the day
+# - 5 minutes at night 
+# - 1 minute when sleeping mode is on
 - alias: bathroom lights off
   trigger:
     platform: state
-    entity_id: binary_sensor.bathroom_multisensor_motion
+    entity_id: binary_sensor.bathroom_motion
     from: 'on'
     to: 'off'
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
+    for: >-
+      {% if is_state("input_boolean.sleeping", "on") %}
+        "00:01:00"
+      {% elif is_state("sun.sun", "below_horizon") %}
+        "00:05:00"
+      {% elif is_state("sun.sun", "above_horizon") %}
+        "00:01:00"
+      {% else %}
+        "00:02:00"
+      {% endif %}
   condition:
     - condition: state
       entity_id: input_boolean.motion_lights
@@ -93,40 +75,64 @@
     service: light.turn_off
     entity_id: light.bathroom
 
-#####
-##### kitchen motion lighting
-#####
 
-# turn on kitchen lights if there is motion in that room during the day
+#############################################
+########## kitchen motion lighting ##########
+#############################################
+
+# turn kitchen lights at 
+# - 100% during the day
+# - 50% at night
+# - never while sleeping
+# only do this when lights are off so it doesn't overwrite manual settings.
+# technically, we only haver a 100% mode for kitchen, but the lightstrip will
+# be added soon.
 - alias: kitchen lights
   trigger:
     platform: state
     entity_id: binary_sensor.kitchen_motion
-    to: 'on'
     from: 'off'
+    to: 'on'
   condition:
     - condition: state
       entity_id: input_boolean.motion_lights
       state: 'on'
-    - condition: time
-      after: '07:00'
-      before: '01:00'
+    - condition: state
+      entity_id: light.kitchen_lights
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.sleeping
+      state: 'off'
   action:
     service: light.turn_on
-    entity_id: light.kitchen_lights
+    data_template:
+      brightness_pct: >-
+        {% if is_state("sun.sun", "below_horizon") %}
+          50
+        {% elif is_state("sun.sun", "above_horizon") %}
+          100
+        {% else %}
+          25
+        {% endif %}
+      entity_id: light.kitchen_lights
 
-
-# turn off kitchen lights after 5 minutes when no motion detected
+# turn off kitchen lights when no motion detected
+# - 2 minute during the day
+# - 5 minutes at night 
 - alias: kitchen lights off
   trigger:
     platform: state
     entity_id: binary_sensor.kitchen_motion
     from: 'on'
     to: 'off'
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
+    for: >-
+      {% if is_state("sun.sun", "below_horizon") %}
+        "00:05:00"
+      {% elif is_state("sun.sun", "above_horizon") %}
+        "00:02:00"
+      {% else %}
+        "00:02:00"
+      {% endif %}
   condition:
     - condition: state
       entity_id: input_boolean.motion_lights
@@ -138,12 +144,19 @@
     service: light.turn_off
     entity_id: light.kitchen_lights
 
-#####
-##### dining room motion lighting
-#####
 
-# turn dining room lights at 100% and kitchen lights on if there is motion during the day
-- alias: dining room lights (day)
+#################################################
+########## dining room motion lighting ##########
+#################################################
+
+# turn on lights:
+# - kitchen + dining - 100% during the day
+# - dining - 50% at night
+# - never while sleeping
+# only do this when lights are off so it doesn't overwrite manual settings.
+# technically, we only haver a 100% mode for kitchen, but the lightstrip will
+# be added soon.
+- alias: dining room lights
   trigger:
     platform: state
     entity_id: binary_sensor.dining_room_motion
@@ -153,130 +166,101 @@
     - condition: state
       entity_id: input_boolean.motion_lights
       state: 'on'
-    - condition: time
-      after: '06:00'
-      before: '01:00'
     - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
+      entity_id: input_boolean.sleeping
+      state: 'off'
   action:
     - service: light.turn_on
-      entity_id: light.dining_room
-      data:
-        brightness_pct: 100
-    - service: light.turn_on
-      entity_id: light.kitchen_lights
-
-# turn dining room lights on at 70% and kitchen lights on if there is motion at night
-- alias: dining room lights (night)
-  trigger:
-    platform: state
-    entity_id: binary_sensor.dining_room_motion
-    from: 'off'
-    to: 'on'
-  condition:
-    - condition: state
-      entity_id: input_boolean.motion_lights
-      state: 'on'
-    - condition: time
-      after: '15:00'
-      before: '01:00'
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-  action:
-    - service: light.turn_on
-      entity_id: light.dining_room
-      data:
-        brightness_pct: 70
-    - service: light.turn_on
-      entity_id: light.kitchen_lights
-
-# turn off dining room lights & kitchen lights after 5 minutes when no motion detected
+      data_template:
+        brightness_pct: >-
+          {% if is_state("sun.sun", "below_horizon") %}
+            50
+          {% elif is_state("sun.sun", "above_horizon") %}
+            100
+          {% else %}
+            25
+          {% endif %}
+        entity_id:
+          - light.dining_room
+          - >-
+            {% if is_state("sun.sun", "above_horizon") %}
+              light.kitchen_lights
+            {% endif %}
+      
+# turn off dining room & kitchen lights when no motion detected
+# - 5 minute during the day
+# - 2 minutes at night 
 - alias: dining room lights off
   trigger:
     platform: state
     entity_id: binary_sensor.dining_room_motion
     from: 'on'
     to: 'off'
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
+    for: >-
+      {% if is_state("sun.sun", "below_horizon") %}
+        "00:02:00"
+      {% elif is_state("sun.sun", "above_horizon") %}
+        "00:05:00"
+      {% else %}
+        "00:02:00"
+      {% endif %}
   condition:
     - condition: state
       entity_id: input_boolean.motion_lights
       state: 'on'
-    - condition: state
-      entity_id: light.dining_room
-      state: 'on'
   action:
-    - service: light.turn_off
-      entity_id: light.dining_room
-    - service: light.turn_off
-      entity_id: light.kitchen_lights
+    service: light.turn_off
+    data:
+      entity_id: 
+        - light.kitchen_lights
+        - light.dining_room
 
-#####
-##### hallway motion lighting
-#####
 
-# turn on hallway lights if there is motion in that room during the day
-- alias: hallway lights (day)
+#############################################
+########## hallway motion lighting ##########
+#############################################
+
+# turn hallway lights at 
+# - 100% during the day
+# - 75% at night
+# only do this when lights are off so it doesn't overwrite manual settings.
+- alias: hallway lights
   trigger:
     platform: state
     entity_id: binary_sensor.hallway_motion
-    to: 'on'
     from: 'off'
+    to: 'on'
   condition:
     - condition: state
       entity_id: input_boolean.motion_lights
       state: 'on'
-    - condition: time
-      after: '06:00'
-      before: '01:00'
     - condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
+      entity_id: light.hallway
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.sleeping
+      state: 'off'
   action:
     service: light.turn_on
-    entity_id: light.hallway
-    data:
-      brightness_pct: 100
+    data_template:
+      brightness_pct: >-
+        {% if is_state("sun.sun", "below_horizon") %}
+          75
+        {% elif is_state("sun.sun", "above_horizon") %}
+          100
+        {% else %}
+          25
+        {% endif %}
+      entity_id: light.hallway
 
-# turn on hallway lights if there is motion in that room during the evening
-- alias: hallway lights (evening)
-  trigger:
-    platform: state
-    entity_id: binary_sensor.hallway_motion
-    to: 'on'
-    from: 'off'
-  condition:
-    - condition: state
-      entity_id: input_boolean.motion_lights
-      state: 'on'
-    - condition: time
-      after: '06:00'
-      before: '01:00'
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-  action:
-    service: light.turn_on
-    entity_id: light.hallway
-    data:
-      brightness_pct: 70
-
-# turn off hallway lights after 1 minute when no motion detected
+# turn off hallway lights when no motion detected in 1 minute
 - alias: hallway lights off
   trigger:
     platform: state
     entity_id: binary_sensor.hallway_motion
     from: 'on'
     to: 'off'
-    for:
-      hours: 0
-      minutes: 1
-      seconds: 0
+    for: "00:01:00"
   condition:
     - condition: state
       entity_id: input_boolean.motion_lights
