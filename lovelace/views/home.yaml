@@ -7,5 +7,3 @@ cards:
   - !include /config/lovelace/cards/all_temperatures_slider.yaml
   - !include /config/lovelace/cards/lights_on.yaml
   - !include /config/lovelace/cards/hallway.yaml
-  
-  

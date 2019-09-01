@@ -371,11 +371,12 @@ light.hallway_ceiling_2:    # bulb
 ### light group for entire roomm
 light.kitchen_lights:
   friendly_name: Kitchen Lights
-  icon: mdi-fridge-outline
+  icon: mdi:fridge-outline
 
 ### switch platform
 light.kitchen_ceiling:
   friendly_name: Kitchen Ceiling
+  icon: mdi:white-balance-iridescent
 
 
 ############### switches ###############
@@ -388,7 +389,7 @@ switch.kitchen_light:
 ### tuya
 switch.kitchen_keurig_outlet:
   friendly_name: Keurig
-  icon: mdi:coffee-maker
+  icon: mdi:coffee-to-go
 switch.kitchen_lightstrip_outlet:
   friendly_name: Kitchen Lightstrip Outlet
   icon: mdi:led-strip

@@ -1,0 +1,21 @@
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: entity-button
+        entity: switch.kitchen_keurig_outlet
+        icon_height: 125px
+        show_name: false
+        icon: mdi:coffee-to-go
+      - type: entity-button
+        entity: switch.kitchen_lightstrip_outlet
+        show_name: false
+        icon_height: 125px
+      - type: entity-button
+        entity: switch.kitchen_tuya_unused01
+        show_name: false
+        icon_height: 125px
+  - type: entity-button
+    entity: switch.coffeemaker
+    show_name: false
+    icon_height: 125px
