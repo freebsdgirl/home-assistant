@@ -1,6 +1,11 @@
 #
 # in_bed is set by my withings sleep sensor and ifttt.
 #
+# after getting in bed, run sleep automations if the bedroom door
+# is closed. verify that our status isn't asleep already, becauuse there
+# is no need to run the automation twice if i get up in the middle of the
+# night.
+#
 # todo: add conditions for
 #  - if laptop is pingable at the end of those 5 minutes
 #  - if media is playing on the bedroom apple tv
@@ -10,16 +15,9 @@
     entity_id: input_boolean.in_bed
     from: 'off'
     to: 'on'
-    for:
-      hours: 0
-      minutes: 2
-      seconds: 0
   condition:
     - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
+      entity_id: binary_sensor.bedroom_door
+      state: 'off'
   action:
-    - service: light.turn_off
-      entity_id: group.every_light
-    - service: switch.turn_off
-      entity_id: group.desk_power_strip
+    - service: script.go_to_sleep

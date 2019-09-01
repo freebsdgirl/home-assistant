@@ -1,0 +1,27 @@
+#
+# this script is called by automation.bedtime
+#
+# turns off lights, devices, etc.
+#
+
+go_to_sleep:
+  sequence:
+    - service: lock.lock
+      entity_id: lock.front_door_lock
+    - service: homeassistant.turn_off
+      entity_id: group.every_light
+    - service: switch.turn_off
+      entity_id: switch.bathroom_fan
+    - service: switch.turn_off
+      entity_id: switch.bathroom_double_outlet
+    - service: switch.turn_off
+      entity_id: switch.bedroom_wax_melter
+    - service: switch.turn_off
+      entity_id: switch.bedroom_tv
+    - service: switch.turn_off
+      entity_id: switch.workbench_helping_hand
+    # lifx and nanoleaf time out a lot, so re-run turning off all the lights after 5 seconds
+    - delay:
+        seconds: 5
+    - service: homeassistant.turn_off
+      entity_id: group.every_light
