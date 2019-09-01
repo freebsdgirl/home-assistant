@@ -7,3 +7,9 @@ in_bed:
 motion_lights:
   name: Motion Lights
   initial: on
+
+# used by scripts so automations don't run multiple times if i get out of bed
+# in the middle of the night
+sleeping:
+  name: Sleeping
+  initial: off

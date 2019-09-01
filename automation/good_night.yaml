@@ -9,7 +9,12 @@
 # todo: add conditions for
 #  - if laptop is pingable at the end of those 5 minutes
 #  - if media is playing on the bedroom apple tv
-- alias: bedtime
+#
+# todo: split this up to a sleep mode and a napping mode
+# this can be determined by if the sun is above/below horizon.
+#
+
+- alias: good night
   trigger:
     platform: state
     entity_id: input_boolean.in_bed
@@ -18,6 +23,9 @@
   condition:
     - condition: state
       entity_id: binary_sensor.bedroom_door
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.sleeping
       state: 'off'
   action:
     - service: script.go_to_sleep

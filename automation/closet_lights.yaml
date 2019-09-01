@@ -1,0 +1,60 @@
+#
+# if the closet door opens, turn on the light.
+#
+
+- alias: bedroom closet lights on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bedroom_closet_door
+    from: 'off'
+    to: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.bedroom_closet_ceiling
+
+#
+# if the closet door closes, turn off the light.
+#
+
+- alias: bedroom closet lights off
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bedroom_closet_door
+    from: 'on'
+    to: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: light.bedroom_closet_ceiling
+
+#
+# if we leave and the closet door is still open, turn off the light until we get back
+#
+
+- alias: bedroom closet lights off (away)
+  trigger:
+    platform: zone
+    event: leave
+    zone: zone.home
+    entity_id: person.randi_lee_harper
+  condition:
+    - condition: state
+      entity_id: light.bedroom_closet_ceiling
+      state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: light.bedroom_closet_ceiling
+
+
+- alias: bedroom closet lights on (back)
+  trigger:
+    platform: zone
+    event: enter
+    zone: zone.home
+    entity_id: person.randi_lee_harper
+  condition:
+    - condition: state
+      entity_id: binary_sensor.bedroom_closet_door
+      state: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.bedroom_closet_ceiling

@@ -1,5 +1,5 @@
 #
-# this script is called by automation.bedtime
+# this script is called by automation.good_night
 #
 # turns off lights, devices, etc.
 #
@@ -10,6 +10,8 @@ go_to_sleep:
       entity_id: lock.front_door_lock
     - service: homeassistant.turn_off
       entity_id: group.every_light
+    - service: switch.turn_off
+      entity_id: switch.desk_power_strip
     - service: switch.turn_off
       entity_id: switch.bathroom_fan
     - service: switch.turn_off
@@ -25,3 +27,5 @@ go_to_sleep:
         seconds: 5
     - service: homeassistant.turn_off
       entity_id: group.every_light
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.sleeping
