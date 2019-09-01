@@ -1,0 +1,22 @@
+type: vertical-stack
+cards:
+  - type: markdown
+    content: '## dining room'
+  - type: history-graph
+    hours_to_show: 2
+    entities:
+      - entity: binary_sensor.dining_room_motion
+  - type: entities
+    entities:
+      - entity: binary_sensor.dining_room_motion
+        name: Motion
+      - entity: binary_sensor.dining_room_multisensor_tamper
+        name: Tamper
+      - entity: sensor.dining_room_luminance
+        name: Luminance
+      - entity: sensor.dining_room_humidity
+        name: Humidity
+      - entity: sensor.dining_room_temperature
+        name: Temperature
+      - entity: sensor.dining_room_multisensor_battery
+        name: Battery

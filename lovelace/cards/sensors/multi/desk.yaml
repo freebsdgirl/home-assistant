@@ -1,0 +1,20 @@
+type: vertical-stack
+cards:
+  - type: markdown
+    content: '## desk'
+  - type: history-graph
+    hours_to_show: 2
+    entities:
+      - entity: binary_sensor.desk_motion
+  - type: entities
+    entities:
+      - entity: binary_sensor.desk_motion
+        name: Motion
+      - entity: binary_sensor.desk_multisensor_tamper
+        name: Tamper
+      - entity: sensor.desk_luminance
+        name: Luminance
+      - entity: sensor.desk_temperature
+        name: Temperature
+      - entity: sensor.desk_multisensor_battery
+        name: Battery

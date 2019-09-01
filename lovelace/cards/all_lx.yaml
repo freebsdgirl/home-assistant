@@ -1,0 +1,29 @@
+type: 'custom:mini-graph-card'
+align_state: center
+animate: false
+color_thresholds_transition: smooth
+name: Luminance
+entities:
+  - entity: sensor.bathroom_luminance
+    name: Bathroom
+    state_adaptive_color: true
+  - entity: sensor.dining_room_luminance
+    name: Dining Room
+    state_adaptive_color: true
+  - entity: sensor.hallway_luminance
+    name: Hallway
+    state_adaptive_color: true
+  - entity: sensor.kitchen_luminance
+    name: Kitchen
+    state_adaptive_color: true
+  - entity: sensor.living_room_luminance
+    name: Living Room
+    state_adaptive_color: true
+show:
+  extrema: true
+  fill: fade
+  graph: line
+  icon_adaptive_color: false
+  labels: true
+  name_adaptive_color: false
+  state: false

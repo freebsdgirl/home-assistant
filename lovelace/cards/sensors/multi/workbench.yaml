@@ -1,0 +1,24 @@
+type: vertical-stack
+cards:
+  - type: markdown
+    content: '## workbench'
+  - type: history-graph
+    hours_to_show: 2
+    entities:
+      - entity: binary_sensor.workbench_motion
+  - type: entities
+    entities:
+      - entity: binary_sensor.workbench_motion
+        name: Motion
+      - entity: binary_sensor.workbench_multisensor_tamper
+        name: Tamper
+      - entity: sensor.workbench_luminance
+        name: Luminance
+      - entity: sensor.workbench_humidity
+        name: Humidity
+      - entity: sensor.workbench_temperature
+        name: Temperature
+      - entity: sensor.workbench_ultraviolet
+        name: Ultraviolet
+      - entity: sensor.workbench_multisensor_battery
+        name: Battery

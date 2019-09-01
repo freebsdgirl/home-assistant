@@ -1,0 +1,8 @@
+type: vertical-stack
+cards:
+  - type: entities
+    entities:
+      - entity: binary_sensor.bathroom_door
+        name: Door
+      - entity: sensor.bathroom_door_contact_battery
+        name: Battery

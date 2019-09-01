@@ -1,0 +1,22 @@
+type: vertical-stack
+cards:
+  - type: markdown
+    content: '## living room (west)'
+  - type: history-graph
+    hours_to_show: 2
+    entities:
+      - entity: binary_sensor.living_room_west_motion
+  - type: entities
+    entities:
+      - entity: binary_sensor.living_room_west_motion
+        name: Motion
+      - entity: binary_sensor.living_room_west_multisensor_tamper
+        name: Tamper
+      - entity: sensor.living_room_west_luminance
+        name: Luminance
+      - entity: sensor.living_room_west_humidity
+        name: Humidity
+      - entity: sensor.living_room_west_temperature
+        name: Temperature
+      - entity: sensor.living_room_west_multisensor_battery
+        name: Battery

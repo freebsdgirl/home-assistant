@@ -1,0 +1,22 @@
+type: vertical-stack
+cards:
+  - type: markdown
+    content: '## hallway'
+  - type: history-graph
+    hours_to_show: 2
+    entities:
+      - entity: binary_sensor.hallway_motion
+  - type: entities
+    entities:
+      - entity: binary_sensor.hallway_motion
+        name: Motion
+      - entity: binary_sensor.hallway_multisensor_tamper
+        name: Tamper
+      - entity: sensor.hallway_luminance
+        name: Luminance
+      - entity: sensor.hallway_humidity
+        name: Humidity
+      - entity: sensor.hallway_temperature
+        name: Temperature
+      - entity: sensor.hallway_multisensor_battery
+        name: Battery

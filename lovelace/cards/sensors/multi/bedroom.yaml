@@ -1,0 +1,14 @@
+type: vertical-stack
+cards:
+  - type: history-graph
+    hours_to_show: 2
+    entities:
+      - entity: binary_sensor.bedroom_motion
+  - type: entities
+    entities:
+      - entity: binary_sensor.bedroom_motion
+        name: Motion
+      - entity: sensor.bedroom_temperature
+        name: Temperature
+      - entity: sensor.bedroom_multisensor_battery
+        name: Battery

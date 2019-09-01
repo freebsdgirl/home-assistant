@@ -1,0 +1,29 @@
+type: 'custom:mini-graph-card'
+align_state: center
+animate: false
+color_thresholds_transition: smooth
+name: Humidity
+entities:
+  - entity: sensor.bathroom_humidity
+    name: Bathroom
+    state_adaptive_color: true
+  - entity: sensor.dining_room_humidity
+    name: Dining Room
+    state_adaptive_color: true
+  - entity: sensor.hallway_humidity
+    name: Hallway
+    state_adaptive_color: true
+  - entity: sensor.kitchen_humidity
+    name: Kitchen
+    state_adaptive_color: true
+  - entity: sensor.living_room_humidity
+    name: Living Room
+    state_adaptive_color: true
+show:
+  extrema: true
+  fill: fade
+  graph: line
+  icon_adaptive_color: false
+  labels: true
+  name_adaptive_color: false
+  state: false

@@ -1,0 +1,32 @@
+type: 'custom:mini-graph-card'
+align_state: center
+animate: false
+color_thresholds_transition: smooth
+name: Temperature
+entities:
+  - entity: sensor.bathroom_temperature
+    name: Bathroom
+    state_adaptive_color: true
+  - entity: sensor.bedroom_temperature
+    name: Bedroom
+    state_adaptive_color: true
+  - entity: sensor.dining_room_temperature
+    name: Dining Room
+    state_adaptive_color: true
+  - entity: sensor.hallway_temperature
+    name: Hallway
+    state_adaptive_color: true
+  - entity: sensor.kitchen_temperature
+    name: Kitchen
+    state_adaptive_color: true
+  - entity: sensor.living_room_temperature
+    name: Living Room
+    state_adaptive_color: true
+show:
+  extrema: true
+  fill: fade
+  graph: line
+  icon_adaptive_color: false
+  labels: true
+  name_adaptive_color: false
+  state: false

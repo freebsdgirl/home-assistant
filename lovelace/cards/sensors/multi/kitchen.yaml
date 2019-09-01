@@ -1,0 +1,22 @@
+type: vertical-stack
+cards:
+  - type: markdown
+    content: '## kitchen'
+  - type: history-graph
+    hours_to_show: 2
+    entities:
+      - entity: binary_sensor.kitchen_motion
+  - type: entities
+    entities:
+      - entity: binary_sensor.kitchen_motion
+        name: Motion
+      - entity: binary_sensor.kitchen_multisensor_tamper
+        name: Tamper
+      - entity: sensor.kitchen_luminance
+        name: Luminance
+      - entity: sensor.kitchen_humidity
+        name: Humidity
+      - entity: sensor.kitchen_temperature
+        name: Temperature
+      - entity: sensor.kitchen_multisensor_battery
+        name: Battery
