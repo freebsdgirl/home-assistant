@@ -1,0 +1,86 @@
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: entity-button
+        entity: light.living_room_left_lamp
+        icon_height: 50px
+        show_name: false
+      - type: entity-button
+        entity: light.living_room_right_lamp
+        icon_height: 50px
+        show_name: false
+  - type: entity-button
+    entity: light.living_room_lamps
+    icon_height: 100px
+    show_name: false
+  - type: horizontal-stack
+    cards:
+      - type: entity-button
+        entity: light.living_room_floor_lamp
+        icon_height: 100px
+        show_name: false
+      - type: entity-button
+        entity: light.living_room_table_lamp
+        icon_height: 100px
+        show_name: false
+      - type: entity-button
+        entity: light.workbench_lamp
+        icon_height: 100px
+        show_name: false
+      - type: entity-button
+        entity: switch.workbench_helping_hand
+        icon_height: 100px
+        show_name: false
+  - type: horizontal-stack
+    cards:
+      - type: entity-button
+        entity: light.living_room_beam
+        icon_height: 50px
+        show_name: false
+      - type: entity-button
+        entity: light.living_room_nanoleaf
+        icon_height: 50px
+        show_name: false
+  - type: horizontal-stack
+    cards:
+      - type: entity-button
+        entity: light.desk_colour_lights_ez
+        icon_height: 171px
+        show_name: false
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: entity-button
+                entity: light.desk_bloom_left
+                icon_height: 50px
+                show_name: false
+              - type: entity-button
+                entity: light.desk_bloom_right
+                icon_height: 50px
+                show_name: false
+          - type: horizontal-stack
+            cards:
+              - type: entity-button
+                entity: light.desk_play_left
+                icon_height: 50px
+                show_name: false
+              - type: entity-button
+                entity: light.desk_play_center
+                icon_height: 50px
+                show_name: false
+              - type: entity-button
+                entity: light.desk_play_right
+                icon_height: 50px
+                show_name: false
+          - type: horizontal-stack
+            cards:
+              - type: entity-button
+                entity: light.desk_pc_lightstrip
+                icon_height: 50px
+                show_name: false
+              - type: entity-button
+                entity: light.desk_lightstrip
+                icon_height: 50px
+                show_name: false

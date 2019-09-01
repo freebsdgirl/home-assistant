@@ -187,6 +187,7 @@ switch.bedroom_double_outlet:
 sensor.bedroom_double_outlet_power:
   friendly_name: Bedroom Double Outlet Power
   device_class;: power
+  icon: mdi:power-plug
 switch.bedroom_tv:
   device_class: outlet
   friendly_name: Bedroom TV
@@ -194,6 +195,7 @@ switch.bedroom_tv:
 sensor.bedroom_tv_power:
   device_class: power
   friendly_name: Bedroom TV Power
+  icon: mdi:television-classic
 switch.bedroom_siren_6:
   device_class: outlet
   friendly_name: Bedroom Siren 6
@@ -276,8 +278,10 @@ light.bedroom_ceiling:          # group
 light.bed_lightstrip:           # bulb
   icon: mdi:bed-empty
 light.bedroom_ceiling_1:        # bulb
+  icon: mdi:lightbulb
   hidden: true
 light.bedroom_ceiling_2:        # bulb
+  icon: mdi:lightbulb
   hidden: true
 light.bedroom_closet_ceiling:   # bulb
   icon: mdi:ceiling-light
@@ -350,8 +354,10 @@ light.hallway:              # room
 light.hallway_ceiling:      # group
   icon: mdi:ceiling-light
 light.hallway_ceiling_1:    # bulb
+  icon: mdi:lightbulb
   hidden: true
 light.hallway_ceiling_2:    # bulb
+  icon: mdi:lightbulb
   hidden: true
 
 
@@ -406,47 +412,68 @@ switch.coffeemaker:
 ### tuya
 switch.workbench_helping_hand:
   friendly_name: Workbench Helping Hand
+  icon: mdi:magnify
   device_class: outlet
 switch.living_room_floor_lamp:
   friendly_name: Living Room Floor Lamp
+  icon: mdi:floor-lamp
   hidden: true
+sensor.living_room_floor_lamp_power:
+  friendly_name: Living Room Floor Lamp Power
+  icon: mdi:floor-lamp
+  device_class: power
 
 ### zooz power strip
 switch.desk_power_strip:
   friendly_name: Desk Power Strip
+  icon: mdi:power-settings
   device_class: outlet
 sensor.desk_power_strip_power:
   friendly_name: Desk Power Strip Power
+  icon: mdi:power-settings
   device_class: power
 switch.desk_amp:
   friendly_name: Amp
+  icon: mdi:amplifier
   device_class: outlet
 sensor.desk_amp_power:
   friendly_name: Amp Power
+  icon: mdi:amplifier
   device_class: power
+# todo: template for monitor speaker on/off icon
 switch.desk_speakers:
   friendly_name: Computer Speakers
+  # icon: mdi:monitor-speaker - not a part of hass yet
+  icon: mdi:speaker
   device_class: outlet
 sensor.desk_speakers_power:
   friendly_name: Computer Speakers Power
+  #icon: mdi:monitor-speaker - not a part of hass yet
+  icon: mdi:speaker
   device_class: power
 switch.desk_right_monitor:
   friendly_name: Right Monitor
+  icon: mdi:monitor
   device_class: outlet
 sensor.desk_right_monitor_power:
   friendly_name: Right Monitor Power
+  icon: mdi:monitor
   device_class: power
 switch.desk_left_monitor:
   friendly_name: Left Monitor
+  icon: mdi:monitor
   device_class: outlet
 sensor.desk_left_monitor_power:
   friendly_name: Left Monitor Power
+  icon: mdi:monitor
   device_class: power
 switch.desk_center_monitor:
   friendly_name: Center Monitor
+  icon: mdi:monitor
   device_class: outlet
 sensor.desk_center_monitor_power:
   friendly_name: Center Monitor Power
+  icon: mdi:monitor
   device_class: power
 switch.desk_power_strip_usb_1:
   friendly_name: Desk Power Strip USB1
@@ -490,7 +517,7 @@ sensor.desk_center_monitor_energy:
 
 ### lightify osram 4x
 sensor.living_room_lightify_4x:
-  friendly_name: Living ROom Buttons
+  friendly_name: Living Room Buttons
   device_class: battery
   hidden: true
 
@@ -556,12 +583,45 @@ light.living_room_floor_lamp:
   icon: mdi:floor-lamp
 
 
+############### scripts ###############
+
+
+### living room lighting
+script.osu_lights:
+  friendly_name: Gaming Lights
+  icon: mdi:gamepad
+script.morning_lights_transition:
+  friendly_name: Morning Lights (transition)
+  icon: mdi:alarm
+script.morning_lights:
+  friendly_name: Morning Lights
+  icon: mdi:weather-sunset
+script.daytime_lights:
+  friendly_name: Day Lights
+  icon: mdi:weather-sunny
+script.evening_lights:
+  friendly_name: Evening Lights
+  icon: mdi:weather-night
+script.bright_lights:
+  friendly_name: Bright Lights
+  icon: mdi:brightness-5
+script.evening_dimmed_lights:
+  friendly_name: Dimmed Lights
+  icon: mdi:brightness-6
+
+
+############### misc ###############
+sensor.living_room_relative_humidity:
+  friendly_name: Living ROom Relative Humidity
+  device_class: humidity
+
+
 ######################################
 ########### UNUSED DEVICES ###########
 ######################################
 
 
-# tuya double plug
+### tuya double plug
 switch.tuya_double_01:
   friendly_name: Tuya Double Outlet (Unused)
   icon: mdi:power-socket-us

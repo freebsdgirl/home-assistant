@@ -1,0 +1,34 @@
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: entity-button
+        entity: script.morning_lights_transition
+        icon_height: 40px
+        show_name: false
+      - type: entity-button
+        entity: script.morning_lights
+        icon_height: 40px
+        show_name: false
+      - type: entity-button
+        entity: script.daytime_lights
+        icon_height: 40px 
+        show_name: false
+      - type: entity-button
+        entity: script.evening_lights
+        icon_height: 40px
+        show_name: false
+  - type: horizontal-stack
+    cards:
+      - type: entity-button
+        entity: script.bright_lights
+        icon_height: 40px
+        show_name: false
+      - type: entity-button
+        entity: script.evening_dimmed_lights
+        icon_height: 40px
+        show_name: false
+      - type: entity-button
+        entity: script.osu_lights
+        icon_height: 40px
+        show_name: false

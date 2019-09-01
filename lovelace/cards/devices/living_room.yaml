@@ -1,0 +1,26 @@
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: entity-button
+        entity: switch.desk_left_monitor
+        icon_height: 125px
+        show_name: false
+      - type: entity-button
+        entity: switch.desk_center_monitor
+        show_name: false
+        icon_height: 125px
+      - type: entity-button
+        entity: switch.desk_right_monitor
+        show_name: false
+        icon_height: 125px
+  - type: horizontal-stack
+    cards:
+      - type: entity-button
+        entity: switch.desk_amp
+        show_name: false
+        icon_height: 125px
+      - type: entity-button
+        entity: switch.desk_speakers
+        show_name: false
+        icon_height: 125px
