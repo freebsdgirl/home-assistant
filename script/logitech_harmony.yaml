@@ -1,0 +1,192 @@
+# moved this out of scenes because i was running into rate limit problems.
+# had to switch from hue groups to hue scenes. lifx was also somemtimes returning
+# an error, and putting a few delays in here and there seemed to help a bit.
+
+harmony_living_room_apple_tv_on:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Living Room TV"
+        command:
+          - PowerOn
+          - InputHdmi2
+        delay_secs: 5
+    - delay:
+        seconds: 2
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Living Room Apple TV"
+        command:
+          - PowerOn
+          - Home
+        delay_secs: 5
+
+harmony_living_room_apple_tv_off:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Living Room Apple TV"
+        command:
+          - Home
+          - Home
+          - Menu
+          - DirectionDown
+          - DirectionRight
+          - DirectionRight
+          - DirectionRight
+          - DirectionRight
+          - Select
+    - delay:
+        seconds: 2
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Living Room Apple TV"
+        command: "DirectionDown"
+        num_repeats: 8
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Living Room Apple TV"
+        command: "Select"
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Living Room TV"
+        command:
+          - PowerOff
+
+
+harmony_living_room_netflix:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Living Room Apple TV"
+        command: "Home"
+        num_repeats: 2
+        delay_secs: 1
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Living Room Apple TV"
+        command:
+          - Menu
+          - DirectionRight
+          - DirectionRight
+          - DirectionRight
+          - DirectionDown
+          - DirectionDown
+          - Select
+
+
+harmony_living_room_apple_tv_play_next:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Living Room Apple TV"
+        command: "Home"
+        num_repeats: 2
+        delay_secs: 1
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Living Room Apple TV"
+        command: 
+          - Menu
+          - DirectionRight
+          - DirectionRight
+          - Select
+    - delay:
+        seconds: 4
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Living Room Apple TV"
+        command: "DirectionLeft"
+        num_repeats: 5
+    - delay:
+        seconds: 2      
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Living Room Apple TV"
+        command: 
+          - DirectionDown
+          - DirectionLeft
+          - Play
+
+
+
+###########################################################
+############### living room air conditioner ###############
+###########################################################
+
+harmony_living_room_air_conditioner_off:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Friedrich AC"
+        command: "PowerOff"
+
+harmony_living_room_air_conditioner_68_low:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Friedrich AC"
+        command: "68Low"
+
+harmony_living_room_air_conditioner_68_high:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Friedrich AC"
+        command: "68High"
+
+harmony_living_room_air_conditioner_72_low:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Friedrich AC"
+        command: "72Low"
+
+harmony_living_room_air_conditioner_72_high:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Friedrich AC"
+        command: "72High"
+
+harmony_living_room_air_conditioner_fan_high:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Friedrich AC"
+        command: "FanHigh"
+
+harmony_living_room_air_conditioner_fan_low:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Friedrich AC"
+        command: "FanLow"
+
+harmony_living_room_air_conditioner_fan_medium:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: "Friedrich AC"
+        command: "FanMedium"
+

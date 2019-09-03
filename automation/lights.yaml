@@ -51,16 +51,17 @@
     entity_id: binary_sensor.bathroom_motion
     from: 'on'
     to: 'off'
-    for: >-
-      {% if is_state("input_boolean.sleeping", "on") %}
-        "00:01:00"
-      {% elif is_state("sun.sun", "below_horizon") %}
-        "00:05:00"
-      {% elif is_state("sun.sun", "above_horizon") %}
-        "00:01:00"
-      {% else %}
-        "00:02:00"
-      {% endif %}
+    for:
+      minutes: ->
+        {% if is_state("input_boolean.sleeping", "on") %}
+          1
+        {% elif is_state("sun.sun", "below_horizon") %}
+          5
+        {% elif is_state("sun.sun", "above_horizon") %}
+          1
+        {% else %}
+          2
+        {% endif %}
   condition:
     - condition: state
       entity_id: input_boolean.motion_lights
@@ -125,14 +126,15 @@
     entity_id: binary_sensor.kitchen_motion
     from: 'on'
     to: 'off'
-    for: >-
-      {% if is_state("sun.sun", "below_horizon") %}
-        "00:05:00"
-      {% elif is_state("sun.sun", "above_horizon") %}
-        "00:02:00"
-      {% else %}
-        "00:02:00"
-      {% endif %}
+    for:
+      minutes: ->
+        {% if is_state("sun.sun", "below_horizon") %}
+          5
+        {% elif is_state("sun.sun", "above_horizon") %}
+          2
+        {% else %}
+          2
+        {% endif %}
   condition:
     - condition: state
       entity_id: input_boolean.motion_lights
@@ -196,14 +198,13 @@
     entity_id: binary_sensor.dining_room_motion
     from: 'on'
     to: 'off'
-    for: >-
-      {% if is_state("sun.sun", "below_horizon") %}
-        "00:02:00"
-      {% elif is_state("sun.sun", "above_horizon") %}
-        "00:05:00"
-      {% else %}
-        "00:02:00"
-      {% endif %}
+    for:
+      minutes: >-
+        {% if is_state("sun.sun", "above_horizon") %}
+          5
+        {% else %}
+          2
+        {% endif %}
   condition:
     - condition: state
       entity_id: input_boolean.motion_lights
@@ -260,7 +261,8 @@
     entity_id: binary_sensor.hallway_motion
     from: 'on'
     to: 'off'
-    for: "00:01:00"
+    for:
+      minutes: 1
   condition:
     - condition: state
       entity_id: input_boolean.motion_lights
