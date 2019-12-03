@@ -4,37 +4,39 @@ default_config:
 tts:
   - platform: google_translate
 
-# we're ignoring a lot of devices in zwave, so moved this out of the main config file.
-zwave: !include zwave.yaml
+# we're pulling in a custom openzwave config for proper
+# zooz zen25 support.
+zwave:
+  usb_path: /dev/ttyACM0
+  config_path: /config/openzwave_config
+  device_config_glob: !include zwave_device_config.yaml
+
 zha:
   usb_path: /dev/ttyUSB1
 
 homeassistant:
   # devices that require a lot of configuration are in packages just for easier readability.
   packages: !include_dir_named packages
-  customize: !include customize.yaml
 
+# homeassistant themes - these need to be updated
+# because they don't seem to work with the new entity
+# page.
 frontend:
-  themes: !include_dir_named theme
- 
-zone: !include zone.yaml
+  themes: !include_dir_merge_named theme
 
-script: !include_dir_merge_named script
-automation: !include_dir_merge_list automation
-switch: !include_dir_list switch
-light: !include_dir_merge_list light
-group: !include_dir_named group
-scene: !include_dir_merge_list scene
-input_boolean: !include input_boolean.yaml
-input_number: !include input_number.yaml
+# custom zones like work, so homeassistant
+# can track where i am as a named location. 
+zone:
+  - name: Work
+    icon: mdi:account-tie
+    latitude: !secret office_lat
+    longitude: !secret office_long
+    radius: 200
 
+light: !include light.yaml
+
+# enable auto discovery
 discovery:
-
-# smart life/tuya devices.
-tuya:
-  username: !secret tuya_username 
-  password: !secret tuya_password 
-  country_code: US
 
 # using dark sky for weather
 weather:
@@ -48,8 +50,8 @@ google:
   client_secret: !secret google_client_secret 
 
 # turn off lights when house is empty - requires sun 
-device_sun_light_trigger:
-sun:
+# device_sun_light_trigger:
+# sun:
 
 ifttt:
   key: !secret ifttt_key
@@ -58,10 +60,54 @@ ifttt:
 # if you've got a decent number of devices, this lags out
 # rpi hard. moved to a mysql db on a different rpi.
 # changing recorder to send to usb disk instead
-recorder: !include recorder.yaml
-
-# mqtt: !include mqtt.yaml
+recorder:
+  db_url: !secret mysql_uri
+  purge_keep_days: 90
+  exclude:
+    domains:
+      - automation
+      - script
+      - scene
+      - zwave
 
 # edit lovelace in yaml mode
 lovelace:
   mode: yaml
+
+sonos:
+  media_player:
+    hosts:
+      - !secret sonos_bedroom
+      - !secret sonos_loft
+      - !secret sonos_living_room
+
+mqtt:
+  discovery: false
+  broker: !secret mqtt_host
+  port: !secret mqtt_port
+  client_id: homeassistant
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  birth_message:
+    topic: 'hass/loft/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/loft/status'
+    payload: 'offline'
+
+mqtt_eventstream:
+  publish_topic: luke/loft
+  subscribe_topic: master/topic
+  ignore_event:
+    - call_service
+#    - state_changed
+
+#mqtt_statestream:
+#  base_topic: haloft
+#  publish_attributes: true
+#  publish_timestamps: true
+
+notify:
+  - platform: discord
+    name: discord
+    token: !secret discord_token

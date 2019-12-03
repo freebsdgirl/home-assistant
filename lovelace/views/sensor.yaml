@@ -1,0 +1,143 @@
+title: Sensor
+path: sensor
+badges: []
+cards:
+
+  # Not Categorized
+  - type: 'custom:monster-card'
+    show_empty: false
+    card:
+      type: entities
+      title: Not Categorized
+    filter:
+      include: 
+        - domain: sensor
+      exclude:
+        - domain: sensor
+          attributes:
+            device_class: battery
+        - domain: sensor
+          attributes:
+            device_class: humidity
+        - domain: sensor
+          attributes:
+            device_class: illuminance
+        - domain: sensor
+          attributes:
+            device_class: pressure
+        - domain: sensor
+          attributes:
+            device_class: signal_strength
+        - domain: sensor
+          attributes:
+            device_class: temperature
+        - domain: sensor
+          attributes:
+            device_class: timestamp
+        - domain: sensor
+          attributes:
+            device_class: power
+
+  # battery
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: battery
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: sensor
+          attributes:
+            device_class: battery
+
+  # humidity
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: humidity
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: sensor
+          attributes:
+            device_class: humidity
+
+  # illuminance
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: illuminance
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: sensor
+          attributes:
+            device_class: illuminance
+
+  # signal_strength
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: signal strength
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: sensor
+          attributes:
+            device_class: signal_strength
+
+  # temperature
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: temperature
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: sensor
+          attributes:
+            device_class: temperature
+
+  # power
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: power
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: sensor
+          attributes:
+            device_class: power
+
+  # pressure
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: pressure
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: sensor
+          attributes:
+            device_class: pressure
+
+  # timestamp
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: timestamp
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: sensor
+          attributes:
+            device_class: timestamp

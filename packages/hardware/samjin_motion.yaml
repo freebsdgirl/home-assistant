@@ -1,0 +1,66 @@
+homeassistant:
+  customize:
+
+    ### Smartthings Motion Sensor
+    ### Samjin 65260901
+    ### S/N 690USA2M853478
+    ### Kitchen Entrance
+
+    binary_sensor.samjin_65260901_motion:
+      device_class: motion
+      friendly_name: Samjin 65260901 Motion
+    sensor.samjin_65260901_temperature:
+      device_class: temperature
+      friendly_name: Samjin 65260901 Temperature
+    sensor.samjin_65260901_battery_level:
+      device_class: battery
+      friendly_name: Samjin 65260901 Battery
+      unit_of_measurement: '%'
+
+    ### Smartthings Motion Sensor
+    ### Samjin df250901
+    ### S/N 690USA2M853422
+    ### Stairs - all of them
+
+    binary_sensor.samjin_df250901_motion:
+      device_class: motion
+      friendly_name: Samjin df250901 Motion
+    sensor.samjin_df250901_temperature:
+      device_class: temperature
+      friendly_name: Samjin df250901 Temperature
+    sensor.samjin_df250901_battery_level:
+      device_class: battery
+      friendly_name: Samjin df250901 Battery
+      unit_of_measurement: '%'
+
+    ### Smartthings Motion Sensor
+    ### Samjin 63c00701
+    ### S/N 690USA2M5Q0056
+    ### hallway - entrance to living room
+
+    binary_sensor.samjin_63c00701_motion:
+      device_class: motion
+      friendly_name: Samjin 63c00701 Motion
+    sensor.samjin_63c00701_temperature:
+      device_class: temperature
+      friendly_name: Samjin 63c00701 Temperature
+    sensor.samjin_63c00701_battery_level:
+      device_class: battery
+      friendly_name: Samjin 63c00701 Battery
+      unit_of_measurement: '%'
+
+    ### Smartthings Motion Sensor
+    ### Samjin 22ce0901
+    ### S/N 690U8A2M883221
+    ### dining room
+  
+    binary_sensor.samjin_22ce0901_motion:
+      device_class: motion
+      friendly_name: Samjin 22ce0901 Motion
+    sensor.samjin_22ce0901_temperature:
+      device_class: temperature
+      friendly_name: Samjin 22ce0901 Temperature
+    sensor.samjin_22ce0901_battery_level:
+      device_class: battery
+      friendly_name: Samjin 22ce0901 Battery
+      unit_of_measurement: '%'

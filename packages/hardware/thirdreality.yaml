@@ -1,0 +1,22 @@
+# we're using a zigbee switch to control the lightswitch itself. that's great
+# and all, but it means it shows up as a switch.* type and not a light.*
+# type. this just creates a device so we can refer to it as a light.
+
+light:
+  - platform: switch
+    name: Living Room Ceiling Switch
+    entity_id: switch.living_room_ceiling_light
+
+homeassistant:
+  customize:
+    # we aren't currently using this.
+    sensor.third_reality_inc_3rss008z_ffe02a93_1_1:
+      hidden: true
+    light.living_room_ceiling:
+      icon: mdi:ceiling-light
+    sensor.living_room_ceiling_light_battery_level:
+      device_class: battery
+      friendly_name: Living Room Ceiling Switch Battery Level
+      unit_of_measurement: '%'
+    switch.living_room_ceiling_light:
+      hidden: true

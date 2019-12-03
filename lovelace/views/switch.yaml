@@ -1,0 +1,28 @@
+title: Switch
+path: switch
+badges: []
+cards:
+
+  # on
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: switch (on)
+      show_header_toggle: false
+    filter:
+      include: 
+        - domain: switch
+          state: on
+
+  # off
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: switch (off)
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: switch
+          state: off

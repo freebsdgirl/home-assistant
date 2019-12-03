@@ -1,0 +1,383 @@
+title: Binary Sensor
+path: binary_sensor
+badges: []
+cards:
+
+  # no device class
+  - type: 'custom:monster-card'
+    show_empty: false
+    card:
+      type: entities
+      title: Not Categorized
+    filter:
+      include: 
+        - domain: binary_sensor
+      exclude:
+        - domain: binary_sensor
+          attributes:
+            device_class: battery
+        - domain: binary_sensor
+          attributes:
+            device_class: cold
+        - domain: binary_sensor
+          attributes:
+            device_class: connectivity
+        - domain: binary_sensor
+          attributes:
+            device_class: door
+        - domain: binary_sensor
+          attributes:
+            device_class: garage_door
+        - domain: binary_sensor
+          attributes:
+            device_class: gas
+        - domain: binary_sensor
+          attributes:
+            device_class: heat
+        - domain: binary_sensor
+          attributes:
+            device_class: light
+        - domain: binary_sensor
+          attributes:
+            device_class: lock
+        - domain: binary_sensor
+          attributes:
+            device_class: moisture
+        - domain: binary_sensor
+          attributes:
+            device_class: motion
+        - domain: binary_sensor
+          attributes:
+            device_class: moving
+        - domain: binary_sensor
+          attributes:
+            device_class: occupancy
+        - domain: binary_sensor
+          attributes:
+            device_class: opening
+        - domain: binary_sensor
+          attributes:
+            device_class: plug
+        - domain: binary_sensor
+          attributes:
+            device_class: power
+        - domain: binary_sensor
+          attributes:
+            device_class: presence
+        - domain: binary_sensor
+          attributes:
+            device_class: problem
+        - domain: binary_sensor
+          attributes:
+            device_class: safety
+        - domain: binary_sensor
+          attributes:
+            device_class: smoke
+        - domain: binary_sensor
+          attributes:
+            device_class: sound
+        - domain: binary_sensor
+          attributes:
+            device_class: vibration
+        - domain: binary_sensor
+          attributes:
+            device_class: window
+
+  # battery
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: battery
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: battery
+
+  # cold
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: cold
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: cold
+
+  # connectivity
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: connectivity
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: connectivity
+
+  # door
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: door
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: door
+
+  # garage_door
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: garage door
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: garage_door
+
+  # gas
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: gas
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: gas
+
+  # heat
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: heat
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: heat
+
+  # light
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: light
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: light
+
+  # lock
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: lock
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: lock
+
+  # moisture
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: moisture
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: moisture
+
+  # motion
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: motion
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: motion
+
+  # moving
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: moving
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: moving
+
+  # occupancy
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: occupancy
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: occupancy
+
+  # opening
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: opening
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: opening
+
+  # plug
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: plug
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: plug
+
+  # power
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: power
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: power
+
+  # presence
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: presence
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: presence
+
+  # problem
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: problem
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: problem
+
+  # safety
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: safety
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: safety
+
+  # smoke
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: smoke
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: smoke
+
+  # sound
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: sound
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: sound
+
+  # vibration
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: vibration
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: vibration
+
+  # window
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: window
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: binary_sensor
+          attributes:
+            device_class: window

@@ -1,0 +1,32 @@
+# package files make multisensors easier to manage.
+
+# sometimes this sensor returns in C, other times it returns in F.
+# use a template to do basic sanity checking on the reported temp/convert to F.
+sensor:
+  - platform: template
+    sensors:
+      hallway_3325_temperature_f:
+        value_template: >-
+          {% if states('sensor.hallway_3325_temperature') | int < 45 %}
+            {{ states('sensor.hallway_3325_temperature') | float * 9 / 5 + 32  }}
+          {% else %}
+            {{ states('sensor.hallway_3325_temperature') }}
+          {% endif %}
+
+homeassistant:
+  customize:
+    binary_sensor.hallway_3325:
+      device_class: motion
+      friendly_name: Hallway 3325 Motion
+    sensor.hallway_3325_temperature:
+      device_class: temperature
+      friendly_name: Hallway 3325 Temperature
+      hidden: true
+    sensor.hallway_3325_temperature_f:
+      device_class: temperature
+      friendly_name: Hallway 3325 Temperature
+      unit_of_measurement: '°F'
+    sensor.hallway_3325_battery_level:
+      device_class: battery
+      friendly_name: Hallway 3325 Battery
+      unit_of_measurement: '%'

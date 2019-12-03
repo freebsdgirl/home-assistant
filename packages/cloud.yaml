@@ -1,0 +1,35 @@
+# anytime new sensors are added, they were automatically synced to alexa which
+# was annoying af. instead i'm just going to specify each sensor i want alexa
+# to have access to.
+
+cloud:
+  alexa:
+    filter:
+      include_entities:
+        - binary_sensor.aarlo_doorbell_motion
+        - binary_sensor.hallway_3325
+        - binary_sensor.bathroom_motion
+        - binary_sensor.bedroom_motion
+        - binary_sensor.kitchen_motion
+        - binary_sensor.loft_motion
+        - binary_sensor.front_door_zw100
+        - binary_sensor.stairs_sml001
+        - binary_sensor.back_door
+        - binary_sensor.bathroom_door
+        - binary_sensor.bedroom_door
+        - binary_sensor.front_door
+        - binary_sensor.master_bath_door
+        - binary_sensor.guest_bedroom_door
+        - sensor.bathroom_zse40_temperature
+        - sensor.bedroom_zse40_temperature
+        - sensor.entrance_temperature
+        - sensor.hallway_temperature
+        - sensor.living_room_zse40_temperature
+        - sensor.kitchen_zse40_temperature
+        - sensor.loft_zse40_temperature
+        - sensor.stairs_temperature
+        - switch.living_room_ceiling_light
+        - input_boolean.sleeping
+        - light.living_room_ceiling
+        - light.dining_room_ceiling
+        - light.kitchen_ceiling

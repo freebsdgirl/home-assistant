@@ -1,0 +1,13 @@
+hue:
+  bridges:
+    - host: !secret hue_host
+      allow_unreachable: true
+      allow_hue_groups: true
+
+homeassistant:
+  customize:
+    # hue created these groups, we don't need them.
+    light.custom_group_for_lights:
+      hidden: true
+    light.custom_group_for_lights_2:
+      hidden: true

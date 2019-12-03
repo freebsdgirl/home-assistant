@@ -1,0 +1,173 @@
+title: Light
+path: light
+badges: []
+cards:
+
+  # hue groups
+  - type: 'custom:monster-card'
+    show_empty: false
+    card:
+      type: entities
+      title: hue groups
+    filter:
+      include: 
+        - domain: light
+          attributes:
+            is_hue_group: true
+      exclude:
+        - state: unavailable
+
+  # toggle-only light
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: toggle-only lights
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: light
+          attributes:
+            supported_features: 0
+      exclude:
+        - domain: light
+          attributes:
+            is_hue_group: true
+
+  # white bulbs
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: white bulbs
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: light
+          attributes:
+            supported_features: 41
+      exclude:
+        - domain: light
+          attributes:
+            is_hue_group: true
+
+  # ww bulbs
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: ww bulbs
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: light
+          attributes:
+            supported_features: 43
+      exclude:
+        - domain: light
+          attributes:
+            is_hue_group: true
+
+  # rgb bulbs
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: rgb bulbs
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: light
+          attributes:
+            supported_features: 49
+      exclude:
+        - domain: light
+          attributes:
+            is_hue_group: true
+
+ # rgbww bulbs
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: 'rgbww bulbs (effects)'
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: light
+          attributes:
+            supported_features: 55
+      exclude:
+        - domain: light
+          attributes:
+            is_hue_group: true
+
+ # rgb (flash+effects) bulbs
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: 'rgb bulbs (flash+effects)'
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: light
+          attributes:
+            supported_features: 61
+      exclude:
+        - domain: light
+          attributes:
+            is_hue_group: true
+
+ # rgbww (flash+effects) bulbs
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: 'rgbww bulbs (flash+effects)'
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: light
+          attributes:
+            supported_features: 63
+      exclude:
+        - domain: light
+          attributes:
+            is_hue_group: true
+  
+  # light
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: other
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: light
+      exclude:
+        - domain: light
+          attributes:
+            is_hue_group: true
+        - domain: light
+          attributes:
+            supported_features: 0
+        - domain: light
+          attributes:
+            supported_features: 41
+        - domain: light
+          attributes:
+            supported_features: 43
+        - domain: light
+          attributes:
+            supported_features: 49
+        - domain: light
+          attributes:
+            supported_features: 55
+        - domain: light
+          attributes:
+            supported_features: 61
+        - domain: light
+          attributes:
+            supported_features: 63

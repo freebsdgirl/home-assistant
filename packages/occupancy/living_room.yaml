@@ -1,0 +1,37 @@
+automation:
+  # if there is motion in the living room
+  # and either the stairs, hallway, dining room, or kitchen are occupied
+  # or the currently occupied room is unknown
+  # or the hallway entrance floor motion sensor triggers
+  # the living room is occupied
+  - alias: occupancy_living_room_1
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.living_room_zse40_motion
+        to: 'on'
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: input_select.occupied
+            state: 'stairs'
+          - condition: state
+            entity_id: input_select.occupied
+            state: 'hallway'
+          - condition: state
+            entity_id: input_select.occupied
+            state: 'dining_room'
+          - condition: state
+            entity_id: input_select.occupied
+            state: 'kitchen'
+          - condition: state
+            entity_id: input_select.occupied
+            state: 'unknown'
+          - condition: state
+            entity_id: binary_sensor.samjin_63c00701_motion
+            state: 'on'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.occupied
+          option: living_room

@@ -1,0 +1,51 @@
+# pressure mat to turn on bedroom sink mirror lights
+
+binary_sensor:
+  - platform: template
+    sensors:
+      bedroom_sink:
+        value_template: "{{ is_state('binary_sensor.bedroom_pressure_mat_sensor', 'off') }}"
+
+homeassistant:
+  customize:
+    # occupancy
+    binary_sensor.bedroom_sink:
+      device_class: occupancy
+      friendly_name: Bedroom Sink
+    binary_sensor.bedroom_pressure_mat_sensor:
+      hidden: true
+    sensor.bedroom_pressure_mat_battery_level:
+      device_class: battery
+      friendly_name: Bedroom Sink Pressure Mat Battery
+      unit_of_measurement: '%'
+
+automation:
+#  - alias: bedroom sink lights toggle
+#    trigger:
+#      platform: state
+#      entity_id: binary_sensor.bedroom_sink
+#    action:
+#      - service_template: "light.turn_{{ trigger.to_state.state }}"
+#        data:
+#          entity_id: light.bedroom_sink
+# turn on our bedroom sink lights when we step on the mat
+  - alias: bedroom sink lights turn on from pressure mat
+    trigger:
+      platform: state
+      entity_id: binary_sensor.bedroom_sink
+      to: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.bedroom_sink
+  - alias: bedroom sink lights turn on from pressure mat
+    trigger:
+      platform: state
+      entity_id: binary_sensor.bedroom_sink
+      to: 'off'
+    action:
+      - delay:
+          seconds: 10
+      - service: light.turn_off
+        data:
+          entity_id: light.bedroom_sink

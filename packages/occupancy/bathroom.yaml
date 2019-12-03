@@ -1,0 +1,77 @@
+automation:
+  # if there is motion in the bathroom
+  # and the hallway motion sensor is active
+  # the bathroom is occupied 
+  - alias: occupancy_bathroom_1
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.bathroom_zse40_motion
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.hallway_3325
+        state: 'on'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.occupied
+          option: bathroom
+
+  # note that all of these automations are soon to be deprecated, as we will be
+  # basing them off of a new template occupancy sensor, allowing multiple
+  # rooms to be occupied at once.
+
+  # turn off the bathroom lights if the occupied room is hallway
+  # and the bathroom lights are on
+  - alias: occupancy_bathroom_actions_1
+    trigger:
+      - platform: state
+        entity_id: input_select.occupied
+        to: 'hallway'
+    condition:
+      - condition: state
+        entity_id: light.bathroom
+        state: 'on'
+    action:
+      - service: light.turn_off
+        entity_id: light.bathroom
+
+  # turn on the bathroom lights at 50% 
+  # if the occupied room becomes bathroom
+  # and the sun is below the horizon
+  # and we are not sleeping
+  - alias: occupancy_bathroom_lights_on_50
+    trigger:
+      - platform: state
+        entity_id: input_select.occupied
+        to: 'bathroom'
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.sleeping
+        state: 'off'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.bathroom
+          brightness_pct: 50
+
+  # turn on the bathroom lights at 100% 
+  # if the occupied room becomes bathroom
+  # and the sun is below the horizon
+  - alias: occupancy_bathroom_lights_on_100
+    trigger:
+      - platform: state
+        entity_id: input_select.occupied
+        to: 'bathroom'
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'above_horizon'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.bathroom
+          brightness_pct: 100

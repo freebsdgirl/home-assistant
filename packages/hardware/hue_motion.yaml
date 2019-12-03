@@ -1,0 +1,42 @@
+# package files make multisensors easier to manage.
+
+# sometimes this sensor returns in C, other times it returns in F.
+# use a template to do basic sanity checking on the reported temp/convert to F.
+sensor:
+  - platform: template
+    sensors:
+      stairs_temperature:
+        value_template: >-
+          {% if states('sensor.stairs_sml001_temperature') | int < 45 %}
+            {{ states('sensor.stairs_sml001_temperature') | float * 9 / 5 + 32  }}
+          {% else %}
+            {{ states('sensor.stairs_sml001_temperature') }}
+          {% endif %}
+
+homeassistant:
+  customize:
+    # idk what this is, but it's not motion.
+    binary_sensor.stairs_sml001:
+      hidden: true
+    # technically this detects as an occupancy device
+    binary_sensor.stairs_sml001_motion:
+      device_class: motion
+      friendly_name: Stairs SML001 Motion
+    sensor.stairs_sml001_battery_level:
+      device_class: battery
+      friendly_name: Stairs SML001 Battery
+      unit_of_measurement: '%'
+    sensor.stairs_sml001_luminance:
+      device_class: illuminance
+      friendly_name: Stairs SML001 Luminance
+      icon: mdi:brightness-5
+      unit_of_measurement: lx
+    sensor.stairs_sml001_temperature:
+      device_class: temperature
+      friendly_name: Stairs SML001 Temperature
+      hidden: true
+    sensor.stairs_temperature:
+      device_class: temperature
+      friendly_name: Stairs Temperature
+      unit_of_measurement: '°F'
+

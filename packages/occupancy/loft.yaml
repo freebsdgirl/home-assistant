@@ -1,0 +1,58 @@
+automation:
+  # if there is motion in the loft
+  # and the currently occupied room is unknown
+  # or the stairs are currently occupied
+  # the loft is currently occupied
+  - alias: occupancy_loft_1
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.loft_zse40_motion
+        to: 'on'
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: input_select.occupied
+            state: 'unknown'
+          - condition: state
+            entity_id: input_select.occupied
+            state: 'stairs'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.occupied
+          option: loft
+
+  # note that all of these automations are soon to be deprecated, as we will be
+  # basing them off of a new template occupancy sensor, allowing multiple
+  # rooms to be occupied at once.
+
+  # turn off the living room lights when the loft is occupied for 1 minute
+  # THIS DOES NOT WORK can't specify for
+  - alias: occupancy_loft_actions_1m
+    trigger:
+      - platform: state
+        entity_id: input_select.occupied
+        to: 'loft'
+        for: 
+          minute: 1
+    action:
+      - service: light.turn_off
+        entity_id: light.living_room_ceiling
+
+  # turn off the kitchen and dining room lights when the loft is occupied for 5
+  # minutes
+  # THIS DOES NOT WORK can't specify for
+  - alias: occupancy_loft_actions_5m
+    trigger:
+      - platform: state
+        entity_id: input_select.occupied
+        to: 'loft'
+        for: 
+          minute: 5
+    action:
+    - service: light.turn_off
+      entity_id:
+        - light.dining_room_ceiling
+        - light.kitchen_ceiling
+      

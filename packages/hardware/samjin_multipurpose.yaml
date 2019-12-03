@@ -1,0 +1,39 @@
+ homeassistant:
+  customize:
+    binary_sensor.back_door:
+      device_class: door
+      friendly_name: Back Door
+    sensor.back_door_battery_level:
+      device_class: battery
+      friendly_name: Back Door Battery
+      unit_of_measurement: '%'
+    binary_sensor.bathroom_door:
+      device_class: door
+    sensor.bathroom_door_battery_level:
+      device_class: battery
+      friendly_name: Bathroom Door Battery
+      unit_of_measurement: '%'
+    binary_sensor.bedroom_door:
+      device_class: door
+    sensor.bedroom_door_battery_level:
+      device_class: battery
+      friendly_name: Bedroom Door Battery
+      unit_of_measurement: '%'
+    binary_sensor.front_door:
+      device_class: door
+    sensor.front_door_battery_level:
+      device_class: battery
+      friendly_name: Front Door Battery
+      unit_of_measurement: '%'
+    binary_sensor.guest_bedroom_door:
+      device_class: door
+    sensor.guest_bedroom_door_battery_level:
+      device_class: battery
+      friendly_name: Guest Bedroom Door Battery
+      unit_of_measurement: '%'
+    binary_sensor.master_bath_door:
+      device_class: door
+    sensor.master_bath_door_battery_level:
+      device_class: battery
+      friendly_name: Master Bath Door Battery
+      unit_of_measurement: '%'

@@ -1,0 +1,13 @@
+- name: Bathroom Mirror
+  platform: group
+  entities:
+    - light.bathroom_left
+    - light.bathroom_center
+    - light.bathroom_right
+
+- name: Bedroom Sink
+  platform: group
+  entities:
+    - light.bedroom_sink_left
+    - light.bedroom_sink_center
+    - light.bedroom_sink_right

@@ -1,0 +1,197 @@
+### package - laundry automation and notifications
+
+# the goal of this project was to use acceleration sensors to track when a
+# laundry cycle was complete and trigger a notification. however, the washing
+# machine doesn't trigger vibration reliably. even when the acceleration sensor
+# is put on the bottom right of the washer where the vibration is strongest,
+# during the drain cycle, there just isn't much motion.
+#
+# i'm in the habit of leaving the washing machine open when it's not in use, so
+# it's safe to assume that when the washing machine door is shut for more than
+# a few seconds, the washing machine is active.
+# 
+# we're then facing a new limitation - determining when the washing machine
+# cycle is complete. one method that requires no extra hardware would be a
+# simple timer, but different sizes and cycles can take different lengths of
+# time. 
+#
+# instead of a timer, i added an old smartthings zigbee plug that has power
+# monitoring. My washing machine only uses 6A, which is very low. this plug is
+# one of my weakest, rated at only 12A, but it would work well for this
+# purpose. i was unable to reach the power on my dryer, but i'm guessing it
+# takes considerably more power, so this method only works for the washing
+# machine.
+#
+# i ran a washing machine cycle to monitor the power usage during this cycle
+# and while idle. my washing machine's power usage peaked at 765 W for a few
+# seconds, but there were some periods of 1W. The last part of the cycle was
+# about 4 minutes of 300 W. When the cycle was complete, the power draw was a
+# steady 0.5 W. after opening the door, it dropped to 0.4 W (an LED turns off
+# when the door is opened) with some temporary jumps back to 0.5 W.
+#
+# i'm still using the contact sensor on the washing machine, but only as a way
+# of verifying it has been emptied into the dryer. I could monitor for the drop
+# to 0.4 W, but I'm not certain yet if that is a reliable way of checking.
+#
+# the logic here is sound (i think)! but i need to update the automations. 
+
+### Hardware
+
+homeassistant:
+  customize:
+
+    ### Smartthings Multipurpose Sensor
+    ### Samjin bfaa0901 690USA1M8K1031
+    ### Location: Washing Machine Door
+    binary_sensor.washing_machine:
+      device_class: opening
+      friendly_name: Washing Machine Door
+    binary_sensor.washing_machine_accelerometer:
+      device_class: vibration
+      friendly_name: Washing Machine Vibration
+    sensor.washing_machine_temperature:
+      device_class: temperature
+      friendly_name: Washing Machine Temperature
+    sensor.washing_machine_battery_level:
+      device_class: battery
+      friendly_name: Washing Machine Battery Level
+      unit_of_measurement: '%'
+
+    ### Smartthings Multipurpose Sensor
+    ### Samjin 18ab0901 690USA1M8K1099
+    ### Location: Center of Dryer Door
+    binary_sensor.dryer:
+      device_class: opening
+      friendly_name: Dryer Door
+      hidden: true # this sensor is only used for vibration
+    binary_sensor.dryer_accelerometer:
+      device_class: vibration
+      friendly_name: Dryer Vibration
+    sensor.dryer_temperature:
+      device_class: temperature
+      friendly_name: Dryer Temperature
+    sensor.dryer_battery_level:
+      device_class: battery
+      friendly_name: Dryer Battery Level
+      unit_of_measurement: '%'
+
+    ### Smartthings v1 Outlet
+    ### CentraLite 4257050-RZHAC
+    ### Location: Laundry Room
+    ### Used by: Washing Machine
+    sensor.washing_machine_power:
+      device_class: power
+      friendly_name: Washing Machine Power
+    # although this is a power outlet, it detects as a light. this device is
+    # disabled in zigbee, but making a note of it here.
+    light.washing_machine:
+      hidden: true
+
+
+input_boolean:
+  dryer_state:
+    initial: off
+  washing_machine_state:
+    initial: off
+
+automation:
+
+
+  # if the washing machine door is closed for more than 30 seconds
+  # and the known state is currently off, set the state to active.
+  - alias: washing machine active
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.washing_machine
+        to: 'off'
+        for:
+          seconds: 30
+    condition:
+      - condition: state
+        entity_id: input_boolean.washing_machine_state
+        state: 'off'
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.washing_machine_state
+
+  # if the washing machine door is open for more than 30 seconds
+  # and the current state is active, set the state to idle.
+  - alias: washing machine idle
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.washing_machine
+        to: 'on'
+        for:
+          seconds: 30
+    condition:
+      - condition: state
+        entity_id: input_boolean.washing_machine_state
+        state: 'on'
+    action:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.washing_machine_state
+
+  # if the washing machine has been active for 30 minutes, set it to
+  # inactive.
+  - alias: washing machine done
+    trigger:
+      - platform: state
+        entity_id: input_boolean.washing_machine_state
+        to: 'on'
+        for:
+          minutes: 30
+    action:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.washing_machine_state
+  
+  # vibration on the dryer isn't constant, but we can assume that
+  # the door should move at least once every minute while the 
+  # dryer is active. However, the acceleration sensor will also
+  # trigger while we are loading or unloading the dryer, since it's
+  # on the part of the dryer that gets the most vibration - the door.
+  # we should ensure that the vibration sensor triggers for 90 
+  # consecutive seconds before we set the state to active.
+
+  # set the dryer to idle if the dryer door has not moved in 60 
+  # seconds and the dryer is currently set to active.
+  - alias: dryer idle
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.dryer_accelerometer
+        to: 'off'
+        for:
+          seconds: 60
+    condition:
+      - condition: state
+        entity_id: input_boolean.dryer_state
+        state: 'on'
+    action:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.dryer_state
+
+  # set the dryer to active if the door has been constantly moving
+  # for 90 seconds and the dryer is currently set to idle.
+  - alias: dryer active
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.dryer_accelerometer
+        to: 'on'
+        for:
+          seconds: 90
+    condition:
+      - condition: state
+        entity_id: input_boolean.dryer_state
+        state: 'off'
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.dryer_state
+
+      #- service: notify.discord
+      #  data:
+      #    target: "648714176172130314"
+      #    message: "the dryer is now idle."

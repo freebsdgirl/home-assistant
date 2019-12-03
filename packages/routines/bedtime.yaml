@@ -1,0 +1,61 @@
+### toggled by alexa's good night routine.
+input_boolean:
+  sleeping:
+    initial: off
+
+automation:
+  ### bedtime routine triggered by the sleeping input boolean
+  - alias: good night
+    trigger:
+      - platform: state
+        entity_id: input_boolean.sleeping
+        from: 'off'
+        to: 'on'
+    action:
+      - service: script.sleep_routine
+      
+  ### wake up routine triggered by the sleeping input boolean
+  - alias: good morning
+    trigger:
+      - platform: state
+        entity_id: input_boolean.sleeping
+        from: 'on'
+        to: 'off'
+    action:
+      - service: script.morning_routine
+
+
+### actions to run when we go to sleep at night
+script:
+  sleep_routine:
+    sequence:
+      # turn on the humidifier
+      - service: script.bedroom_humidifier_auto
+      # lock the front door
+      - service: lock.lock
+        data:
+          entity_id: lock.august_asl_03_smart_lock_locked
+  morning_routine:
+    sequence:
+      # turn off the humidifier
+      - service: script.bedroom_humidifier_off
+      # turn on bedroom lights at 50%
+      - service: light.turn_on
+        data:
+          entity_id: 
+            - light.bedroom_mirror
+            - light.cloud_lamp
+            - light.bedroom # (hue group)
+          brightness_pct: 50
+      # turn on the bathroom lights (hue group) at 100%
+      - service: light.turn_on
+        data:
+          entity_id: light.bathroom
+          brightness_pct: 100
+      # wait 15 seconds
+      - delay:
+          seconds: 30
+      # turn on the kitchen ceiling light
+      - service: light.turn_on
+        data:
+          entity_id: light.kitchen_ceiling

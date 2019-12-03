@@ -1,0 +1,40 @@
+binary_sensor:
+  - platform: template
+    sensors:
+      # create motion sensor from value of burglar node
+      bathroom_zse40_motion:
+        value_template: "{{ is_state('sensor.bathroom_zse40_burglar', '8') }}"
+      # create tamper sensor from value of burglar node
+      bathroom_zse40_tamper:
+        value_template: "{{ is_state('sensor.bathroom_zse40_burglar', '3') }}"
+
+homeassistant:
+  customize:
+    binary_sensor.bathroom_zse40_tamper:
+      device_class: safety
+      friendly_name: Bathroom ZSE40 Tamper
+    binary_sensor.bathroom_zse40_motion:
+      device_class: motion
+      friendly_name: Bathroom ZSE40 Motion
+    sensor.bathroom_zse40_battery_level:
+      device_class: battery
+      friendly_name: Bathroom ZSE40 Battery
+      unit_of_measurement: '%'
+    sensor.bathroom_zse40_burglar:
+      hidden: true
+    sensor.bathroom_zse40_luminance:
+      device_class: illuminance
+      friendly_name: Bathroom ZSE40 Luminance
+      icon: mdi:brightness-5
+      unit_of_measurement: '%'
+    sensor.bathroom_zse40_relative_humidity:
+      device_class: humidity
+      friendly_name: Bathroom ZSE40 Humidity
+      icon: mdi:water-percent
+      unit_of_measurement: '%'
+    sensor.bathroom_zse40_temperature:
+      device_class: temperature
+      friendly_name: Bathroom ZSE40 Temperature
+      unit_of_measurement: '°F'
+    zwave.bathroom_zse40:
+      hidden: true

@@ -2,8 +2,253 @@ title: Home
 path: default_view
 badges: []
 cards:
-  - !include /config/lovelace/cards/weather.yaml
-  - !include /config/lovelace/cards/calendar.yaml
-  - !include /config/lovelace/cards/all_temperatures_slider.yaml
-  - !include /config/lovelace/cards/lights_on.yaml
-  - !include /config/lovelace/cards/hallway.yaml
+
+  # no device class
+  - type: 'custom:monster-card'
+    show_empty: false
+    card:
+      type: entities
+      title: Not Categorized
+    filter:
+      include: [{}]
+      exclude:
+        - domain: alarm_control_panel
+        - domain: binary_sensor
+        - domain: switch
+        - domain: light
+        - domain: sensor
+        - domain: automation
+        - domain: calendar
+        - domain: device_tracker
+        - domain: fan
+        - domain: group
+        - domain: input_boolean
+        - domain: input_select
+        - domain: lock
+        - domain: media_player
+        - domain: person
+        - domain: remote
+        - domain: script
+        - domain: sun
+        - domain: weather
+        - domain: zone
+        - domain: zwave
+        - domain: camera
+
+  - type: 'custom:aarlo-glance'
+    entity: camera.aarlo_front_door_camera
+    name: Front Door
+    show:
+      - motion
+      - sound
+      - snapshot
+      - battery_level
+      - signal_strength
+      - captured_today
+      - image_date
+    top_title: false
+    top_status: false
+    top_date: false
+    image_click: play
+    door: binary_sensor.front_door
+    door_lock: lock.august_asl_03_smart_lock_locked
+    door_bell: binary_sensor.aarlo_ding_doorbell
+
+  # alarm_control_panel
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: alarm control panel
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: alarm_control_panel
+
+  # automation
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: automation
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: automation
+
+  # calendar
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: calendar
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: calendar
+
+  # camera
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: camera
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: camera
+
+  # device_tracker
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: device tracker
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: device_tracker
+
+  # fan
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: fan
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: fan
+
+  # group
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: group
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: group
+
+  # input boolean
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: input boolean
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: input_boolean
+
+  # input select
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: input select
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: input_select
+
+  # lock
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: lock
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: lock
+
+  # media_player
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: media player
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: media_player
+
+  # person
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: person
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: person
+
+  # remote
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: remote
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: remote
+
+  # script
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: script
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: script
+
+  # sun
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: sun
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: sun
+
+  # weather
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: weather
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: weather
+
+  # zone
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: zone
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: zone
+
+  # zwave
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      type: entities
+      title: zwave
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: zwave
+

@@ -1,0 +1,59 @@
+# ecolink dual wallplate switches
+
+switch:
+  - platform: template
+    switches:
+      kitchen_ceiling_light:
+        value_template: "{{ is_state('switch.dining_room_ddls2_left', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.dining_room_ddls2_left
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.dining_room_ddls2_left
+      dining_room_ceiling_light:
+        value_template: "{{ is_state('switch.dining_room_ddls2_right', 'off') }}"
+        turn_on:
+          service: switch.turn_off
+          data:
+            entity_id: switch.dining_room_ddls2_right
+        turn_off:
+          service: switch.turn_on
+          data:
+            entity_id: switch.dining_room_ddls2_right
+
+light:
+  - platform: switch
+    name: Kitchen Ceiling
+    entity_id: switch.kitchen_ceiling_light
+
+  - platform: switch
+    name: Dining Room Ceiling
+    entity_id: switch.dining_room_ceiling_light
+
+homeassistant:
+  customize:
+    switch.dining_room_ddls2_left:
+      hidden: true
+    switch.dining_room_ddls2_right:
+      hidden: true
+    light.dining_room_ceiling:
+      icon: mdi:ceiling-light
+    light.kitchen_ceiling:
+      icon: mdi:track-light
+    sensor.dining_room_ddls2_left_battery_level:
+      device_class: battery
+      friendly_name: Kitchen Ceiling Switch Battery
+      unit_of_measurement: '%'
+    sensor.dining_room_ddls2_right_battery_level:
+      device_class: battery
+      friendly_name: Dining Room Ceiling Switch Battery
+      unit_of_measurement: '%'
+    switch.dining_room_ceiling_light:
+      friendly_name: Dining Room Ceiling Switch
+      icon: mdi:light-switch
+    switch.kitchen_ceiling_light:
+      friendly_name: Kitchen Ceiling Switch
+      icon: mdi:light-switch

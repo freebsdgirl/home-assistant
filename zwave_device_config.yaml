@@ -1,0 +1,48 @@
+
+# sourcenodeid on all entries
+sensor.*_sourcenodeid:
+  ignored: true
+
+# aeotec zw100 multisensor
+sensor.*_zw100_alarm_level:
+  ignored: true
+sensor.*_zw100_alarm_type:
+  ignored: true
+sensor.*_zw100_burglar:
+  ignored: true
+
+# zooz zen25 double plug
+sensor.*_zen25_*alarm_level:
+  ignored: true
+sensor.*_zen25_*alarm_type:
+  ignored: true
+sensor.*_zen25_*exporting:
+  ignored: true
+sensor.*_zen25_*power_management:
+  ignored: true
+sensor.*_zen25_*interval*:
+  ignored: true
+sensor.*_zen25_*previous_reading*:
+  ignored: true
+sensor.*_zen25_*voltage*:
+  ignored: true
+
+# zooz zse40 multisensor
+sensor.*_zse40_alarm_level:
+  ignored: true
+sensor.*_zse40_alarm_type:
+  ignored: true
+
+# august s3 smartlock
+sensor.august_asl_03_smart_lock_alarm_level:
+  ignored: true
+sensor.august_asl_03_smart_lock_alarm_type:
+  ignored: true
+
+# pressure mat contact sensor
+sensor.bedroom_pressure_mat_alarm_type:
+  ignored: true
+sensor.bedroom_pressure_mat_alarm_level:
+  ignored: true
+sensor.bedroom_pressure_mat_burglar:
+  ignored: true

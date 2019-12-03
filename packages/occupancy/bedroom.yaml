@@ -1,0 +1,37 @@
+automation:
+  # if there is motion in the bedroom
+  # and the hallway motion sensor is active
+  # or the currently occupied room is hallway
+  # the bedroom is occupied
+  - alias: occupancy_bedroom_1
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.bedroom_zse40_motion
+        to: 'on'
+    condition: 
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.hallway_3325
+            state: 'on'
+          - condition: state
+            entity_id: input_select.occupied
+            state: 'hallway'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.occupied
+          option: bedroom
+
+  # if the pressure mat is turned on
+  # the bedroom is occupied
+  - alias: occupancy_bedroom_2
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.bedroom_sink
+        to: 'on'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.occupied
+          option: bedroom

@@ -1,0 +1,40 @@
+sensor:
+  - platform: template
+    sensors:
+      front_door_zw100_temperature_f:
+        value_template: >-
+          {% if states('sensor.front_door_zw100_temperature') | int < 10   %}
+            {{ states('sensor.front_door_zw100_temperature') | float * 9 / 5 + 32  }}
+          {% else %}
+            {{ states('sensor.front_door_zw100_temperature') }}
+          {% endif %}
+
+homeassistant:
+  customize:
+    binary_sensor.front_door_zw100_motion:
+      device_class: motion
+      friendly_name: Front Door ZW100 Motion
+    sensor.front_door_zw100_temperature:
+      device_class: temperature
+      friendly_name: Front Door ZW100 Temperature
+      hidden: true
+    sensor.front_door_zw100_temperature_f:
+      device_class: temperature
+      friendly_name: Front Door ZW100 Temperature
+      unit_of_measurement: '°F'
+    sensor.front_door_zw100_battery_level:
+      device_class: battery
+      friendly_name: Front Door ZW100 Battery
+      unit_of_measurement: '%'
+    sensor.front_door_zw100_relative_humidity:
+      device_class: humidity
+      friendly_name: Front Door ZW100 Humidity
+      icon: mdi:water-percent
+      unit_of_measurement: '%'
+    sensor.front_door_zw100_luminance:
+      device_class: illuminance
+      friendly_name: Front Door ZW100 Luminance
+      icon: mdi:brightness-5
+      unit_of_measurement: lx
+    sensor.front_door_zw100_ultraviolet:
+      friendly_name: Front Door ZW100 Ultraviolet

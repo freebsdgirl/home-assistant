@@ -1,0 +1,35 @@
+automation:
+# turn off loft lights if motion downstairs and no motion upstairs
+# if the stairs motion turns on, see if the loft motion sensor has
+# triggered in the past 90 seconds. if it has, we are going downstairs.
+# THIS DOES NOT WORK.
+  - alias: loft lights off
+    trigger:
+      platform: state
+      entity_id: binary_sensor.stairs_sml001
+      from: 'off'
+      to: 'on'
+    action:
+      - delay:
+          seconds: 30
+      - condition: state
+        entity_id: binary_sensor.loft_motion
+        state: 'off'
+        for:
+          seconds: 15
+      - service: light.turn_off
+        data:
+          entity_id: light.loft
+  - alias: loft lights on
+    trigger:
+      platform: state
+      entity_id: binary_sensor.stairs_sml001
+      from: 'off'
+      to: 'on'
+    action:
+      - condition: state
+        entity_id: binary_sensor.living_room_motion
+        state: 'on'
+      - service: light.turn_on
+        data:
+          entity_id: light.loft
