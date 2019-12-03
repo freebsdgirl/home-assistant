@@ -1,0 +1,50 @@
+# button for testing occupancy
+automation:
+  - alias: Occupancy Button
+    trigger:
+    - event_data:
+        command: button_single
+        device_ieee: "28:6d:97:00:01:03:8b:73"
+      event_type: zha_event
+      platform: event
+    action:
+      - service: notify.discord
+        data_template:
+          target: "648714176172130314"
+          message: "occupancy test: {{ states('input_select.occupied') }}"
+         
+
+#  - alias: Loft Button Hold
+#    trigger:
+#    - event_data:
+#        command: button_hold
+#        device_ieee: "28:6d:97:00:01:03:8b:73"
+#      event_type: zha_event
+#      platform: event
+#    action:
+#      - service: notify.discord
+#        data:
+#          target: "648714176172130314"
+#          message: "test: button hold\n\ntesting if notify.discord interprets newlines or if escapes are needed"
+
+#  - alias: Loft Button Double
+#    trigger:
+#    - event_data:
+#        command: button_double
+#        device_ieee: "28:6d:97:00:01:03:8b:73"
+#      event_type: zha_event
+#      platform: event
+#    action:
+#      - service: notify.discord
+#        data_template:
+#          target: "648714176172130314"
+#          message: "test: button double push - testing template (humdifier = {{ states('input_select.bedroom_humidifier_speed') }})"
+
+homeassistant:
+  customize:
+    sensor.loft_button_battery_level:
+      device_class: battery
+      friendly_name: Loft Button Battery
+      unit_of_measurement: '%'
+    binary_sensor.loft_button:
+      hidden: true
