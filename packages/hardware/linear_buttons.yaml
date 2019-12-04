@@ -1,0 +1,76 @@
+# Up id: 1
+# Down id: 2
+# scene_data
+# - 0: click
+# - 2: hold
+# - 1: release
+
+automation:
+  - id: living room hue concentrate
+    alias: living room hue lights on
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.living_room_wa00z1
+          scene_id: 1
+          scene_data: 0
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: Living Room
+          scene_name: Concentrate
+
+  - id: living room hue lights off
+    alias: living room hue lights off
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.living_room_wa00z1
+          scene_id: 2
+          scene_data: 0
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.living_room
+      - service: light.turn_off
+        data:
+          entity_id: light.circle_lamp
+
+  - id: living room hue scene 90s
+    alias: living room hue scene 90s
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.living_room_wa00z1
+          scene_id: 1
+          scene_data: 2
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: Living Room
+          scene_name: 90s
+
+  - id: living room hue scene spring blossom
+    alias: living room hue scene spring blossom
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.living_room_wa00z1
+          scene_id: 2
+          scene_data: 2
+    action:
+      - service: hue.hue_activate_scene
+        data:
+          group_name: Living Room
+          scene_name: Spring blossom
+
+homeassistant:
+  customize:
+    sensor.living_room_wa00z1_battery_level:
+      device_class: battery
+      friendly_name: Living Room Scene Controller Battery
+      unit_of_measurement: '%'

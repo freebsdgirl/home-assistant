@@ -1,0 +1,6 @@
+sonos:
+  media_player:
+    hosts:
+      - !secret sonos_bedroom
+      - !secret sonos_loft
+      - !secret sonos_living_room

@@ -18,11 +18,9 @@ homeassistant:
   # devices that require a lot of configuration are in packages just for easier readability.
   packages: !include_dir_named packages
 
-# homeassistant themes - these need to be updated
-# because they don't seem to work with the new entity
-# page.
+# homeassistant themes
 frontend:
-  themes: !include_dir_merge_named theme
+  themes: !include_dir_merge_named themes
 
 # custom zones like work, so homeassistant
 # can track where i am as a named location. 
@@ -70,44 +68,6 @@ recorder:
       - scene
       - zwave
 
-# edit lovelace in yaml mode
+# edit lovelace in yaml
 lovelace:
   mode: yaml
-
-sonos:
-  media_player:
-    hosts:
-      - !secret sonos_bedroom
-      - !secret sonos_loft
-      - !secret sonos_living_room
-
-mqtt:
-  discovery: false
-  broker: !secret mqtt_host
-  port: !secret mqtt_port
-  client_id: homeassistant
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-  birth_message:
-    topic: 'hass/loft/status'
-    payload: 'online'
-  will_message:
-    topic: 'hass/loft/status'
-    payload: 'offline'
-
-mqtt_eventstream:
-  publish_topic: luke/loft
-  subscribe_topic: master/topic
-  ignore_event:
-    - call_service
-#    - state_changed
-
-#mqtt_statestream:
-#  base_topic: haloft
-#  publish_attributes: true
-#  publish_timestamps: true
-
-notify:
-  - platform: discord
-    name: discord
-    token: !secret discord_token

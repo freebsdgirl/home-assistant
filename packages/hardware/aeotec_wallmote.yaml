@@ -1,0 +1,6 @@
+homeassistant:
+  customize:
+    sensor.living_room_wallmote_quad_battery_level:
+      device_class: battery
+      friendly_name: Living Room Wallmote Quad Battery
+      unit_of_measurement: '%'

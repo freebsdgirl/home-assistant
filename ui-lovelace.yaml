@@ -1,35 +1,35 @@
 title: Natural Born Fraggers
 resources:
-  - type: js
-    url: /local/cards/calendar-card.js
-  - type: js
-    url: /local/cards/button-entity-row.js
-  - type: js
-    url: /local/cards/light-entity-row.js
-  - type: js
-    url: /local/cards/light-entity-card.js
-  - type: module
-    url: /local/cards/circle-sensor-card.js
-  - type: js
-    url: /local/cards/flex-table-card.js
+  - url: /community_plugin/calendar-card/calendar-card.js
+    type: js
+  - url: /community_plugin/button-entity-row/button-entity-row.js
+    type: module
+  - url: /community_plugin/light-entity-row/light-entity-row.js
+    type: js
+  - url: /community_plugin/light-entity-card/light-entity-card.js
+    type: js
+  - url: /community_plugin/circle-sensor-card/circle-sensor-card.js
+    type: module
+  - url: /community_plugin/flex-table-card/flex-table-card.js
+    type: js
+  - url: /community_plugin/weather-card/weather-card.js
+    type: module
+  - url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
+    type: module
+  - url: /community_plugin/button-card/button-card.js
+    type: module
+  - url: /community_plugin/mini-media-player/mini-media-player-bundle.js
+    type: module
+  - url: /community_plugin/swipe-card/swipe-card.js
+    type: module
+  - url: /community_plugin/lovelace-hass-aarlo/hass-aarlo.js
+    type: module
   - type: js
     url: /local/cards/tiles-card.js
-  - type: module
-    url: /local/cards/weather-card/weather-card.js
-  - type: module
-    url: /local/cards/mini-graph-card-bundle.js
   - type: js
     url: /local/cards/monster-card.js
   - type: js
-    url: /local/cards/button-card.js
-  - type: js
-    url: /local/cards/mini-media-player-bundle.js
-  - type: js
-    url: /local/cards/swipe-card.js
-  - type: js
     url: /local/cards/battery-entity.js
-  - type: module
-    url: /local/cards/hass-aarlo.js
 views: 
   - !include /config/lovelace/views/home.yaml
   - !include /config/lovelace/views/binary_sensor.yaml

@@ -39,4 +39,3 @@ homeassistant:
       device_class: temperature
       friendly_name: Stairs Temperature
       unit_of_measurement: '°F'
-

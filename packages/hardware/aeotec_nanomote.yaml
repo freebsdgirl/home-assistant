@@ -1,0 +1,6 @@
+homeassistant:
+  customize:
+    sensor.keychain_nanomote_quad_battery_level:
+      device_class: battery
+      friendly_name: Keychain NanoMote Quad Battery
+      unit_of_measurement: '%'

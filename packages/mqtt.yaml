@@ -1,0 +1,27 @@
+mqtt:
+  discovery: false
+#  discovery_prefix: homeassistant
+  broker: !secret mqtt_host
+  port: !secret mqtt_port
+  client_id: homeassistant
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  birth_message:
+    topic: 'hass/loft/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/loft/status'
+    payload: 'offline'
+
+mqtt_eventstream:
+  publish_topic: agents/loft
+  subscribe_topic: master/topic
+  ignore_event:
+    - call_service
+    - state_changed
+
+# Example configuration.yaml entry
+#mqtt_statestream:
+#  base_topic: haloft
+#  publish_attributes: true
+#  publish_timestamps: true
